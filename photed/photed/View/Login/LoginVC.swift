@@ -21,7 +21,7 @@ class LoginVC: UIViewController {
         return label
     }()
     
-    lazy var nicknameText: UITextField = {
+    lazy var loginText: UITextField = {
         let textField = UITextField()
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 10
@@ -68,7 +68,7 @@ class LoginVC: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(regAction(sender:)), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.littleButtonHeight)
+        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: (view.frame.width-EnvData.paddingLeft*2)/2, height: EnvData.littleButtonHeight)
         button.contentHorizontalAlignment = .left
         return button
     }()
@@ -81,7 +81,7 @@ class LoginVC: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(foggotAction(sender:)), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.littleButtonHeight)
+        button.frame = CGRect(x: view.frame.width/2, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: (view.frame.width-EnvData.paddingLeft*2)/2, height: EnvData.littleButtonHeight)
         button.contentHorizontalAlignment = .right
         return button
     }()
@@ -95,7 +95,7 @@ class LoginVC: UIViewController {
     
     private func drawInterface() {
         view.addSubview(loginLabel)
-        view.addSubview(nicknameText)
+        view.addSubview(loginText)
         view.addSubview(passwordText)
         view.addSubview(loginButton)
         view.addSubview(regButton)
@@ -103,6 +103,15 @@ class LoginVC: UIViewController {
     }
     
     @objc private func loginAction(sender: UIButton) {
+        let loginCheck = LoginCheck()
+        let error = loginCheck.isDataNorm(login: loginText.text, password: passwordText.text)
+        switch error {
+        case .loginEmpty: print("login empty")
+        case .loginError: print("login error")
+        case .passwordEmpty: print("password empty")
+        case .passwordError: print("password error")
+        case .none: print("ok")
+        }
     }
     
     @objc private func regAction(sender: UIButton) {
