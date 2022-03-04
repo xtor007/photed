@@ -32,6 +32,7 @@ class LoginVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -47,6 +48,7 @@ class LoginVC: UIViewController {
         textField.clearButtonMode = .always
         textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -102,22 +104,39 @@ class LoginVC: UIViewController {
         view.addSubview(foggotPasswordButton)
     }
     
+    private func clearTextFields() {
+        loginText.breakBorder()
+        passwordText.breakBorder()
+    }
+    
     @objc private func loginAction(sender: UIButton) {
+        clearTextFields()
         let loginCheck = LoginCheck()
         let error = loginCheck.isDataNorm(login: loginText.text, password: passwordText.text)
         switch error {
-        case .loginEmpty: print("login empty")
-        case .loginError: print("login error")
-        case .passwordEmpty: print("password empty")
-        case .passwordError: print("password error")
-        case .none: print("ok")
+        case .loginEmpty:
+            showError(message: "Login is empty")
+            loginText.paintErrorBorder()
+        case .loginError:
+            showError(message: "Error login")
+            loginText.paintErrorBorder()
+        case .passwordEmpty:
+            showError(message: "Password is empty")
+            passwordText.paintErrorBorder()
+        case .passwordError:
+            showError(message: "Error in password")
+            passwordText.paintErrorBorder()
+        case .none:
+            print("ok")
         }
     }
     
     @objc private func regAction(sender: UIButton) {
+        clearTextFields()
     }
     
     @objc private func foggotAction(sender: UIButton) {
+        clearTextFields()
     }
 
 }
