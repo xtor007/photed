@@ -68,7 +68,7 @@ class LoginVC: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(regAction(sender:)), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.littleButtonHeight)
+        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: (view.frame.width-EnvData.paddingLeft*2)/2, height: EnvData.littleButtonHeight)
         button.contentHorizontalAlignment = .left
         return button
     }()
@@ -81,7 +81,7 @@ class LoginVC: UIViewController {
         button.setAttributedTitle(attributedString, for: .normal)
         button.addTarget(self, action: #selector(foggotAction(sender:)), for: .touchUpInside)
         button.setTitleColor(.white, for: .normal)
-        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.littleButtonHeight)
+        button.frame = CGRect(x: view.frame.width/2, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight*2+EnvData.blockDistance/2, width: (view.frame.width-EnvData.paddingLeft*2)/2, height: EnvData.littleButtonHeight)
         button.contentHorizontalAlignment = .right
         return button
     }()
@@ -106,6 +106,8 @@ class LoginVC: UIViewController {
     }
     
     @objc private func regAction(sender: UIButton) {
+        let regView = RegistrationVC()
+        self.present(regView, animated: false, completion: nil)
     }
     
     @objc private func foggotAction(sender: UIButton) {
