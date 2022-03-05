@@ -7,7 +7,17 @@
 
 import UIKit
 
+enum Field {
+    case login
+    case password
+    case passwordAgain
+    case email
+    case phone
+}
+
 class RegistrationVC: UIViewController {
+    
+    private var textFields: [Field: UITextField] = [.login : UITextField(), .password : UITextField(), .passwordAgain : UITextField(), .email : UITextField(), .phone : UITextField()]
         
     lazy var registrationLabel: UILabel = {
         let label = UILabel()
@@ -22,8 +32,11 @@ class RegistrationVC: UIViewController {
     }()
     
     lazy var avatarImage: UIImageView = {
-        let avatar = UIImageView(image: UIImage(named: "none"))
+        let avatar = UIImageView()
         avatar.backgroundColor = UIColor(named: "buttColor")
+        avatar.layer.cornerRadius = 100
+        avatar.clipsToBounds = true
+        avatar.image = UIImage(named: "none")
         avatar.frame = CGRect(x: view.frame.width - (EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2)/0.7, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance, width: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2, height: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2)
         return avatar
     }()
@@ -50,6 +63,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -66,6 +80,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .always
         textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -82,6 +97,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .always
         textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -97,6 +113,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -112,6 +129,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -136,11 +154,11 @@ class RegistrationVC: UIViewController {
         view.addSubview(registrationLabel)
         view.addSubview(avatarImage)
         view.addSubview(pickPhotoButton)
-        view.addSubview(nicknameText)
-        view.addSubview(passwordText)
-        view.addSubview(passwordTextAgain)
-        view.addSubview(emailText)
-        view.addSubview(phoneText)
+        view.addSubview(nicknameText); textFields.updateValue(nicknameText, forKey: .login)
+        view.addSubview(passwordText); textFields.updateValue(passwordText, forKey: .password)
+        view.addSubview(passwordTextAgain); textFields.updateValue(passwordTextAgain, forKey: .passwordAgain)
+        view.addSubview(emailText); textFields.updateValue(emailText, forKey: .email)
+        view.addSubview(phoneText); textFields.updateValue(phoneText, forKey: .phone)
         view.addSubview(registrationButton)
     }
     
@@ -153,8 +171,30 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func loginAction(sender: UIButton) {
-        guard !(nicknameText.hasText && passwordText.text!.isPasswordValid() && (passwordText.text! == passwordTextAgain.text!) && (emailText.text!.isEmailValid() || phoneText.text!.isPhoneValid())) else {
-            return
+        let regCheck = RegistrationCheck().isDataNorm(textFields)
+        switch regCheck {
+        case _ where regCheck == .loginEmpty || regCheck == .loginError:
+            _ = regCheck == .loginEmpty ? showError(message: "Empty login") : showError(message: "Invalid login")
+            nicknameText.paintErrorBorder()
+        case _ where regCheck == .passwordEmpty || regCheck == .passwordError:
+            _ = regCheck == .passwordEmpty ? showError(message: "Empty password") : showError(message: "Invalid password")
+            passwordText.paintErrorBorder()
+        case .passwordsNotEqual:
+            showError(message: "Passwords are not equal")
+            passwordText.paintErrorBorder()
+            passwordTextAgain.paintErrorBorder()
+        case .emailOrPhoneEmpty:
+            showError(message: "Email or phone are both empty")
+            emailText.paintErrorBorder()
+            phoneText.paintErrorBorder()
+        case .emailError:
+            showError(message: "Invalid email")
+            emailText.paintErrorBorder()
+        case .phoneError:
+            showError(message: "Invalid phone number")
+            phoneText.paintErrorBorder()
+        default:
+            dismiss(animated: true, completion: nil)
         }
     }
 
@@ -167,14 +207,12 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
                 avatarImage.image = image
         }
-        
-//        avatarImage.image = image
-        
+                
         picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+
 }
