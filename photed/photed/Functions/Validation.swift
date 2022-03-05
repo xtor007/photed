@@ -14,7 +14,7 @@ extension String {
                return false
            }
         }
-        let domainRange =  "(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\\.(?!\\.))){0,28}(?:[A-Za-z0-9_]))?)"
+        let domainRange =  "(?:)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\\.(?!\\.))){0,28}(?:[A-Za-z0-9_]))?)"
         let loginTest = NSPredicate(format: "SELF MATCHES %@", domainRange)
         return loginTest.evaluate(with: self)
     }

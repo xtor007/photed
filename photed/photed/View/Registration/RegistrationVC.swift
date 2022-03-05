@@ -148,6 +148,17 @@ class RegistrationVC: UIViewController {
         view.backgroundColor = .gray
         drawInterface()
         nicknameText.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        for textField in textFields.values {
+            textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
+        }
+    }
+    
+    private func clearTextFields() {
+        nicknameText.breakBorder()
+        passwordText.breakBorder()
+        passwordTextAgain.breakBorder()
+        emailText.breakBorder()
+        phoneText.breakBorder()
     }
     
     private func drawInterface() {
@@ -194,6 +205,7 @@ class RegistrationVC: UIViewController {
             showError(message: "Invalid phone number")
             phoneText.paintErrorBorder()
         default:
+            clearTextFields()
             dismiss(animated: true, completion: nil)
         }
     }
