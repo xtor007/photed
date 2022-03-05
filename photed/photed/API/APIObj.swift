@@ -7,7 +7,17 @@
 
 import Foundation
 
+struct UserInfo {
+    var id: String
+    var login: String
+    var email: String
+    var phone: String
+    var password: String
+}
+
 class APIObj {
+    
+    var users: [UserInfo] = []
     
     func getAllLogins() -> [String] {
         return ["xtor","berlinium"]
@@ -30,3 +40,6 @@ class APIObj {
     }
     
 }
+
+// temp DB
+let DATABASE = APIObj()

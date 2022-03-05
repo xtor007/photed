@@ -53,7 +53,6 @@ class RegistrationVC: UIViewController {
     
     lazy var nicknameText: UITextField = {
         let textField = UITextField()
-        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 10
         textField.adjustsFontSizeToFitWidth = true
@@ -148,6 +147,7 @@ class RegistrationVC: UIViewController {
         overrideUserInterfaceStyle = .light
         view.backgroundColor = .gray
         drawInterface()
+        nicknameText.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
     }
     
     private func drawInterface() {
@@ -196,6 +196,15 @@ class RegistrationVC: UIViewController {
         default:
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+            if let text:String = textField.text {
+                DispatchQueue.main.async {
+                    self.nicknameText.text = text.lowercased()
+                }
+            }
+
     }
 
 }
