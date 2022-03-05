@@ -113,10 +113,6 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         passwordText.breakBorder()
     }
     
-    private func showCodeWrite() {
-        
-    }
-    
     @objc private func loginAction(sender: UIButton) {
         clearTextFields()
         let loginCheck = LoginCheck()
@@ -135,7 +131,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
             showError(message: "Error in password")
             passwordText.paintErrorBorder()
         case .none:
-            showCodeWrite()
+            print("ok")
         }
     }
     

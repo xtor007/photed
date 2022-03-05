@@ -9,6 +9,8 @@ import UIKit
 
 class FoggotPasswordVC: UIViewController {
     
+    private let foggotPasswordCheck = FoggotPasswordCheck()
+    
     lazy var loginText: UITextField = {
         let textField = UITextField()
         textField.autocorrectionType = .no
@@ -43,6 +45,35 @@ class FoggotPasswordVC: UIViewController {
         button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance*2+EnvData.textFieldHeight+EnvData.segmentHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.buttonHeight)
         return button
     }()
+    
+    lazy var codeText: UITextField = {
+        let textField = UITextField()
+        textField.textAlignment = .center
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
+        textField.backgroundColor = UIColor.white
+        textField.layer.cornerRadius = 10
+        textField.adjustsFontSizeToFitWidth = true
+        textField.minimumFontSize = 28
+        textField.placeholder = "Enter code..."
+        textField.clearButtonMode = .whileEditing
+        textField.clearButtonMode = .unlessEditing
+        textField.clearButtonMode = .always
+        textField.keyboardType = .numberPad
+        textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight*2)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
+        return textField
+    }()
+    
+    lazy var sendCodeButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor(named: "buttColor")
+        button.setTitle("Send code", for: .normal)
+        button.layer.cornerRadius = 8
+        button.addTarget(self, action: #selector(sendCodeAction(sender:)), for: .touchUpInside)
+        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance*2+EnvData.textFieldHeight+EnvData.segmentHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.buttonHeight)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +90,24 @@ class FoggotPasswordVC: UIViewController {
     
     private func clearTextFields() {
         loginText.breakBorder()
+        codeText.breakBorder()
+    }
+    
+    private func showCodeWrite() {
+        loginText.isHidden = true
+        selectWaySegmentedControl.isHidden = true
+        sendButton.isHidden = true
+        view.addSubview(codeText)
+        view.addSubview(sendCodeButton)
+    }
+    
+    private func showEnterNewPassword() {
+        codeText.isHidden = true
+        sendCodeButton.isHidden = true
     }
     
     @objc private func sendAction(sender: UIButton) {
         clearTextFields()
-        let foggotPasswordCheck = FoggotPasswordCheck()
         let way = selectWaySegmentedControl.selectedSegmentIndex == 0 ? WayForReestabilish.email : WayForReestabilish.phone
         let error = foggotPasswordCheck.isDataNorm(login: loginText.text, way: way)
         switch error {
@@ -77,6 +121,22 @@ class FoggotPasswordVC: UIViewController {
             showError(message: "You haven't email")
         case .noPhone:
             showError(message: "You haven't phone")
+        case .none:
+            showCodeWrite()
+        }
+    }
+    
+    @objc private func sendCodeAction(sender: UIButton) {
+        clearTextFields()
+        let error = foggotPasswordCheck.isCodeNorm(code: codeText.text)
+        switch error {
+        case .codeEmpty:
+            showError(message: "Code is empty")
+            codeText.paintErrorBorder()
+        case .codeError:
+            showError(message: "Code is incorrect. Try again", handler: {(alert: UIAlertAction!) in
+                self.dismiss(animated: true)
+            })
         case .none:
             print("ok")
         }

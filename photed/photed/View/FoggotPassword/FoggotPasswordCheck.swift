@@ -41,6 +41,16 @@ class FoggotPasswordCheck {
         return .none
     }
     
+    func isCodeNorm(code: String?) -> FoggotPasswordErrorCode {
+        if code == nil || code == "" {
+            return .codeEmpty
+        }
+        if code != self.code {
+            return .codeError
+        }
+        return .none
+    }
+    
 }
 
 enum FoggotPasswordErrorLogin {
@@ -54,4 +64,10 @@ enum FoggotPasswordErrorLogin {
 enum WayForReestabilish {
     case phone
     case email
+}
+
+enum FoggotPasswordErrorCode {
+    case codeEmpty
+    case codeError
+    case none
 }
