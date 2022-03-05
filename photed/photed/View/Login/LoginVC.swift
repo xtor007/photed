@@ -132,6 +132,8 @@ class LoginVC: UIViewController {
     }
     
     @objc private func regAction(sender: UIButton) {
+        let regView = RegistrationVC()
+        self.present(regView, animated: false, completion: nil)
         clearTextFields()
     }
     

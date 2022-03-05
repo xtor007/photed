@@ -10,6 +10,7 @@ import UIKit
 
 class EnvData {
     
+    static let presentModePaddingDown: CGFloat = 40
     static let paddingLeft: CGFloat = 10
     static let paddingUp: CGFloat = 40
     static let labelHeight: CGFloat = 40
