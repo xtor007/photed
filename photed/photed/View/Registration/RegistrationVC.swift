@@ -7,7 +7,17 @@
 
 import UIKit
 
+enum Field {
+    case login
+    case password
+    case passwordAgain
+    case email
+    case phone
+}
+
 class RegistrationVC: UIViewController {
+    
+    private var textFields: [Field: UITextField] = [.login : UITextField(), .password : UITextField(), .passwordAgain : UITextField(), .email : UITextField(), .phone : UITextField()]
         
     lazy var registrationLabel: UILabel = {
         let label = UILabel()
@@ -136,11 +146,11 @@ class RegistrationVC: UIViewController {
         view.addSubview(registrationLabel)
         view.addSubview(avatarImage)
         view.addSubview(pickPhotoButton)
-        view.addSubview(nicknameText)
-        view.addSubview(passwordText)
-        view.addSubview(passwordTextAgain)
-        view.addSubview(emailText)
-        view.addSubview(phoneText)
+        view.addSubview(nicknameText); textFields.updateValue(nicknameText, forKey: .login)
+        view.addSubview(passwordText); textFields.updateValue(passwordText, forKey: .password)
+        view.addSubview(passwordTextAgain); textFields.updateValue(passwordTextAgain, forKey: .passwordAgain)
+        view.addSubview(emailText); textFields.updateValue(emailText, forKey: .email)
+        view.addSubview(phoneText); textFields.updateValue(phoneText, forKey: .phone)
         view.addSubview(registrationButton)
     }
     
@@ -153,6 +163,7 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func loginAction(sender: UIButton) {
+        let regCheck = RegistrationCheck().isDataNorm(textFields)
         guard !(nicknameText.hasText && passwordText.text!.isPasswordValid() && (passwordText.text! == passwordTextAgain.text!) && (emailText.text!.isEmailValid() || phoneText.text!.isPhoneValid())) else {
             return
         }
@@ -167,14 +178,12 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
                 avatarImage.image = image
         }
-        
-//        avatarImage.image = image
-        
+                
         picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
     }
-    
+
 }
