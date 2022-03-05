@@ -164,8 +164,25 @@ class RegistrationVC: UIViewController {
     
     @objc private func loginAction(sender: UIButton) {
         let regCheck = RegistrationCheck().isDataNorm(textFields)
-        guard !(nicknameText.hasText && passwordText.text!.isPasswordValid() && (passwordText.text! == passwordTextAgain.text!) && (emailText.text!.isEmailValid() || phoneText.text!.isPhoneValid())) else {
-            return
+        switch regCheck {
+        case .loginEmpty:
+            showError(message: "Empty login")
+        case .loginError:
+            showError(message: "Invalid login")
+        case .passwordEmpty:
+            showError(message: "Empty password")
+        case .passwordError:
+            showError(message: "Invalid password")
+        case .passwordsNotEqual:
+            showError(message: "Passwords are not equal")
+        case .emailOrPhoneEmpty:
+            showError(message: "Email or phone are both empty")
+        case .emailError:
+            showError(message: "Invalid email")
+        case .phoneError:
+            showError(message: "Invalid phone number")
+        default:
+            showError(message: "Everything is good")
         }
     }
 

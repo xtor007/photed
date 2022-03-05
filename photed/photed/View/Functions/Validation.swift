@@ -25,11 +25,11 @@ extension String {
     func isLoginValid() -> Bool {
         for user in DATABASE.users {
             if user.login == self {
-               return true
+               return false
            }
         }
         
-        return false
+        return true
     }
     
     func isPasswordValid() -> Bool {

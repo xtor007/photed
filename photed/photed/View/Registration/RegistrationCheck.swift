@@ -12,17 +12,17 @@ class RegistrationCheck {
     
     func isDataNorm(_ textFields: [Field : UITextField]) -> RegistrationError {
         switch textFields {
-        case textFields where textFields[.login]?.text == nil:
+        case textFields where textFields[.login]!.text!.isEmpty :
             return .loginEmpty
-        case textFields where textFields[.login]?.text != nil:
+        case textFields where !textFields[.login]!.text!.isEmpty:
             if !textFields[.login]!.text!.isLoginValid() {
                 return .loginError
             } else {
-                fallthrough
+                continue
             }
-        case textFields where textFields[.password]?.text == nil:
+        case textFields where false:
             return .passwordEmpty
-        case textFields where textFields[.password]?.text != nil:
+        case textFields where textFields[.password]!.text! != "":
             if !textFields[.password]!.text!.isPasswordValid() {
                 return .passwordError
             } else if textFields[.password]!.text! == textFields[.passwordAgain]!.text! {
@@ -30,27 +30,29 @@ class RegistrationCheck {
             } else {
                 fallthrough
             }
-        case textFields where textFields[.email]?.text == nil:
-            if textFields[.phone]?.text == nil {
+        case textFields where textFields[.email]!.text!.isEmpty:
+            if textFields[.phone]!.text!.isEmpty {
                 return .emailOrPhoneEmpty
             } else if !textFields[.phone]!.text!.isPhoneValid() {
                 return .phoneError
-            }
-        case textFields where textFields[.email]?.text != nil:
-            if !textFields[.email]!.text!.isEmailValid() {
-                return .loginEmpty
             } else {
                 fallthrough
             }
+        case textFields where !textFields[.email]!.text!.isEmpty:
+            if !textFields[.email]!.text!.isEmailValid() {
+                return .emailError
+            } else {
+                fallthrough
+            }
+        case textFields where !textFields[.phone]!.text!.isEmpty:
+            if !textFields[.phone]!.text!.isEmailValid() {
+                return .phoneError
+            }
         default:
-            <#code#>
-        }
-        if textFields where textFields[.login].description.isEmailValid()  {
-            <#code#>
+            return .none
         }
         return .none
     }
-    
 }
 
 enum RegistrationError {
