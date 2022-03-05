@@ -24,6 +24,8 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     lazy var loginText: UITextField = {
         let textField = UITextField()
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 10
         textField.adjustsFontSizeToFitWidth = true
@@ -39,6 +41,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     lazy var passwordText: UITextField = {
         let textField = UITextField()
+        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 8
         textField.adjustsFontSizeToFitWidth = true
@@ -110,6 +113,10 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         passwordText.breakBorder()
     }
     
+    private func showCodeWrite() {
+        
+    }
+    
     @objc private func loginAction(sender: UIButton) {
         clearTextFields()
         let loginCheck = LoginCheck()
@@ -128,7 +135,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
             showError(message: "Error in password")
             passwordText.paintErrorBorder()
         case .none:
-            print("ok")
+            showCodeWrite()
         }
     }
     
@@ -153,6 +160,3 @@ extension LoginVC {
         return presentationController
     }
 }
-
-
-//: UIViewControllerTransitioningDelegate

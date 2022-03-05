@@ -11,6 +11,8 @@ class FoggotPasswordVC: UIViewController {
     
     lazy var loginText: UITextField = {
         let textField = UITextField()
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 10
         textField.adjustsFontSizeToFitWidth = true
@@ -27,6 +29,7 @@ class FoggotPasswordVC: UIViewController {
     lazy var selectWaySegmentedControl: UISegmentedControl = {
         let segmentetControl = UISegmentedControl(items: ["Email","Phone"])
         segmentetControl.backgroundColor = .white
+        segmentetControl.selectedSegmentIndex = 0
         segmentetControl.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.blockDistance+EnvData.textFieldHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.segmentHeight)
         return segmentetControl
     }()
@@ -54,8 +57,29 @@ class FoggotPasswordVC: UIViewController {
         view.addSubview(sendButton)
     }
     
+    private func clearTextFields() {
+        loginText.breakBorder()
+    }
+    
     @objc private func sendAction(sender: UIButton) {
-        
+        clearTextFields()
+        let foggotPasswordCheck = FoggotPasswordCheck()
+        let way = selectWaySegmentedControl.selectedSegmentIndex == 0 ? WayForReestabilish.email : WayForReestabilish.phone
+        let error = foggotPasswordCheck.isDataNorm(login: loginText.text, way: way)
+        switch error {
+        case .loginEmpty:
+            showError(message: "Login is empty")
+            loginText.paintErrorBorder()
+        case .loginError:
+            showError(message: "Error in login")
+            loginText.paintErrorBorder()
+        case .noEmail:
+            showError(message: "You haven't email")
+        case .noPhone:
+            showError(message: "You haven't phone")
+        case .none:
+            print("ok")
+        }
     }
 
 }
