@@ -1,16 +1,29 @@
 PODS:
   - SwiftChart (1.0.1)
+  - UIDrawer (1.0)
 
 DEPENDENCIES:
   - SwiftChart
+  - UIDrawer (from `https://github.com/Que20/UIDrawer.git`, tag `1.0`)
 
 SPEC REPOS:
   trunk:
     - SwiftChart
 
+EXTERNAL SOURCES:
+  UIDrawer:
+    :git: https://github.com/Que20/UIDrawer.git
+    :tag: '1.0'
+
+CHECKOUT OPTIONS:
+  UIDrawer:
+    :git: https://github.com/Que20/UIDrawer.git
+    :tag: '1.0'
+
 SPEC CHECKSUMS:
   SwiftChart: ba767a678d568a5ee22d419e146a0582865e1aff
+  UIDrawer: 1bfbc152fee69f6809a41508000cf1b9bd4b1738
 
-PODFILE CHECKSUM: 667d1bddc7b349fbd6cc17baaf83ab7257916679
+PODFILE CHECKSUM: 4f5611edc3b43cfb6ba4009bd7d751a324f2fac0
 
 COCOAPODS: 1.11.2

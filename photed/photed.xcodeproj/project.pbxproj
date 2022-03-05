@@ -19,6 +19,7 @@
 		FFAFA38027D2704600DB8808 /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA37F27D2704600DB8808 /* LoginCheck.swift */; };
 		FFAFA38227D27E2E00DB8808 /* ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38127D27E2D00DB8808 /* ShowError.swift */; };
 		FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38427D2818C00DB8808 /* PaintBorders.swift */; };
+		FFAFA38827D28DC400DB8808 /* FoggotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38727D28DC300DB8808 /* FoggotPasswordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		FFAFA37F27D2704600DB8808 /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
 		FFAFA38127D27E2D00DB8808 /* ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowError.swift; sourceTree = "<group>"; };
 		FFAFA38427D2818C00DB8808 /* PaintBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintBorders.swift; sourceTree = "<group>"; };
+		FFAFA38727D28DC300DB8808 /* FoggotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoggotPasswordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		FFAFA35D27D2402E00DB8808 /* photed */ = {
 			isa = PBXGroup;
 			children = (
+				FFAFA38327D2816B00DB8808 /* Functions */,
 				FFAFA37627D240C500DB8808 /* Resources */,
 				FFAFA37527D240AE00DB8808 /* Storyboard */,
 				FFAFA37427D2408F00DB8808 /* System */,
@@ -102,7 +105,7 @@
 		FFAFA37227D2405400DB8808 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FFAFA38327D2816B00DB8808 /* Functions */,
+				FFAFA38627D28D7E00DB8808 /* FoggotPassword */,
 				FFAFA37727D245C900DB8808 /* Login */,
 			);
 			path = View;
@@ -168,6 +171,14 @@
 				FFAFA38427D2818C00DB8808 /* PaintBorders.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		FFAFA38627D28D7E00DB8808 /* FoggotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				FFAFA38727D28DC300DB8808 /* FoggotPasswordVC.swift */,
+			);
+			path = FoggotPassword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +301,7 @@
 				FFAFA35F27D2402E00DB8808 /* AppDelegate.swift in Sources */,
 				FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */,
 				FFAFA36127D2402E00DB8808 /* SceneDelegate.swift in Sources */,
+				FFAFA38827D28DC400DB8808 /* FoggotPasswordVC.swift in Sources */,
 				FFAFA37927D2462E00DB8808 /* LoginVC.swift in Sources */,
 				FFAFA37C27D25B5200DB8808 /* EnvData.swift in Sources */,
 				FFAFA38227D27E2E00DB8808 /* ShowError.swift in Sources */,
