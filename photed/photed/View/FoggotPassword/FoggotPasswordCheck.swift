@@ -51,6 +51,22 @@ class FoggotPasswordCheck {
         return .none
     }
     
+    func isPasswordNorm(password: String?, rePassword: String?) -> FoggotPasswordErrorPasssword {
+        if password == nil || password == "" {
+            return .passwordEmpty
+        }
+        if !password!.isPasswordValid() {
+            return .passwordError
+        }
+        if rePassword == nil || rePassword == "" {
+            return .rePasswordEmpty
+        }
+        if password != rePassword {
+            return .rePasswordError
+        }
+        return .none
+    }
+    
 }
 
 enum FoggotPasswordErrorLogin {
@@ -69,5 +85,13 @@ enum WayForReestabilish {
 enum FoggotPasswordErrorCode {
     case codeEmpty
     case codeError
+    case none
+}
+
+enum FoggotPasswordErrorPasssword {
+    case passwordEmpty
+    case passwordError
+    case rePasswordEmpty
+    case rePasswordError
     case none
 }

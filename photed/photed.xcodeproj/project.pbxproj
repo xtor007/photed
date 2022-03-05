@@ -124,7 +124,6 @@
 			isa = PBXGroup;
 			children = (
 				C48912F327D26F4500AA8108 /* Registration */,
-				FFAFA38327D2816B00DB8808 /* Functions */,
 				FFAFA38627D28D7E00DB8808 /* FoggotPassword */,
 				FFAFA37727D245C900DB8808 /* Login */,
 			);
@@ -164,7 +163,6 @@
 				FFAFA36C27D2403800DB8808 /* Info.plist */,
 				FFAFA36727D2403800DB8808 /* Assets.xcassets */,
 				FFAFA37B27D25B5200DB8808 /* EnvData.swift */,
-				C48912F627D286D700AA8108 /* Validation.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -188,6 +186,7 @@
 		FFAFA38327D2816B00DB8808 /* Functions */ = {
 			isa = PBXGroup;
 			children = (
+				C48912F627D286D700AA8108 /* Validation.swift */,
 				FFAFA38127D27E2D00DB8808 /* ShowError.swift */,
 				FFAFA38427D2818C00DB8808 /* PaintBorders.swift */,
 			);
