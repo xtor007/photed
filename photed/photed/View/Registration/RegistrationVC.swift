@@ -32,8 +32,11 @@ class RegistrationVC: UIViewController {
     }()
     
     lazy var avatarImage: UIImageView = {
-        let avatar = UIImageView(image: UIImage(named: "none"))
+        let avatar = UIImageView()
         avatar.backgroundColor = UIColor(named: "buttColor")
+        avatar.layer.cornerRadius = 100
+        avatar.clipsToBounds = true
+        avatar.image = UIImage(named: "none")
         avatar.frame = CGRect(x: view.frame.width - (EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2)/0.7, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance, width: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2, height: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2)
         return avatar
     }()
@@ -60,6 +63,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -76,6 +80,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .always
         textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -92,6 +97,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .always
         textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -107,6 +113,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -122,6 +129,7 @@ class RegistrationVC: UIViewController {
         textField.clearButtonMode = .unlessEditing
         textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
@@ -165,24 +173,28 @@ class RegistrationVC: UIViewController {
     @objc private func loginAction(sender: UIButton) {
         let regCheck = RegistrationCheck().isDataNorm(textFields)
         switch regCheck {
-        case .loginEmpty:
-            showError(message: "Empty login")
-        case .loginError:
-            showError(message: "Invalid login")
-        case .passwordEmpty:
-            showError(message: "Empty password")
-        case .passwordError:
-            showError(message: "Invalid password")
+        case _ where regCheck == .loginEmpty || regCheck == .loginError:
+            _ = regCheck == .loginEmpty ? showError(message: "Empty login") : showError(message: "Invalid login")
+            nicknameText.paintErrorBorder()
+        case _ where regCheck == .passwordEmpty || regCheck == .passwordError:
+            _ = regCheck == .passwordEmpty ? showError(message: "Empty password") : showError(message: "Invalid password")
+            passwordText.paintErrorBorder()
         case .passwordsNotEqual:
             showError(message: "Passwords are not equal")
+            passwordText.paintErrorBorder()
+            passwordTextAgain.paintErrorBorder()
         case .emailOrPhoneEmpty:
             showError(message: "Email or phone are both empty")
+            emailText.paintErrorBorder()
+            phoneText.paintErrorBorder()
         case .emailError:
             showError(message: "Invalid email")
+            emailText.paintErrorBorder()
         case .phoneError:
             showError(message: "Invalid phone number")
+            phoneText.paintErrorBorder()
         default:
-            showError(message: "Everything is good")
+            dismiss(animated: true, completion: nil)
         }
     }
 
