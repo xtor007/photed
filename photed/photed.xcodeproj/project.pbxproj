@@ -21,6 +21,10 @@
 		FFAFA38027D2704600DB8808 /* LoginCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA37F27D2704600DB8808 /* LoginCheck.swift */; };
 		FFAFA38227D27E2E00DB8808 /* ShowError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38127D27E2D00DB8808 /* ShowError.swift */; };
 		FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38427D2818C00DB8808 /* PaintBorders.swift */; };
+		FFAFA38827D28DC400DB8808 /* FoggotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38727D28DC300DB8808 /* FoggotPasswordVC.swift */; };
+		FFAFA38A27D3822F00DB8808 /* FoggotPasswordCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA38927D3822E00DB8808 /* FoggotPasswordCheck.swift */; };
+		FFC9B1B827D3A6E2000FF31B /* Mailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9B1B727D3A6E2000FF31B /* Mailer.swift */; };
+		FFC9B1BA27D3A731000FF31B /* SMSSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC9B1B927D3A731000FF31B /* SMSSender.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		FFAFA37F27D2704600DB8808 /* LoginCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCheck.swift; sourceTree = "<group>"; };
 		FFAFA38127D27E2D00DB8808 /* ShowError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowError.swift; sourceTree = "<group>"; };
 		FFAFA38427D2818C00DB8808 /* PaintBorders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintBorders.swift; sourceTree = "<group>"; };
+		FFAFA38727D28DC300DB8808 /* FoggotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoggotPasswordVC.swift; sourceTree = "<group>"; };
+		FFAFA38927D3822E00DB8808 /* FoggotPasswordCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoggotPasswordCheck.swift; sourceTree = "<group>"; };
+		FFC9B1B727D3A6E2000FF31B /* Mailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mailer.swift; sourceTree = "<group>"; };
+		FFC9B1B927D3A731000FF31B /* SMSSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSender.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +110,7 @@
 		FFAFA35D27D2402E00DB8808 /* photed */ = {
 			isa = PBXGroup;
 			children = (
+				FFAFA38327D2816B00DB8808 /* Functions */,
 				FFAFA37627D240C500DB8808 /* Resources */,
 				FFAFA37527D240AE00DB8808 /* Storyboard */,
 				FFAFA37427D2408F00DB8808 /* System */,
@@ -116,6 +125,7 @@
 			children = (
 				C48912F327D26F4500AA8108 /* Registration */,
 				FFAFA38327D2816B00DB8808 /* Functions */,
+				FFAFA38627D28D7E00DB8808 /* FoggotPassword */,
 				FFAFA37727D245C900DB8808 /* Login */,
 			);
 			path = View;
@@ -182,6 +192,17 @@
 				FFAFA38427D2818C00DB8808 /* PaintBorders.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		FFAFA38627D28D7E00DB8808 /* FoggotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				FFAFA38727D28DC300DB8808 /* FoggotPasswordVC.swift */,
+				FFAFA38927D3822E00DB8808 /* FoggotPasswordCheck.swift */,
+				FFC9B1B727D3A6E2000FF31B /* Mailer.swift */,
+				FFC9B1B927D3A731000FF31B /* SMSSender.swift */,
+			);
+			path = FoggotPassword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,10 +321,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFAFA38027D2704600DB8808 /* LoginCheck.swift in Sources */,
+				FFAFA38A27D3822F00DB8808 /* FoggotPasswordCheck.swift in Sources */,
+				FFC9B1BA27D3A731000FF31B /* SMSSender.swift in Sources */,
 				FFAFA37E27D26F4000DB8808 /* APIObj.swift in Sources */,
 				FFAFA35F27D2402E00DB8808 /* AppDelegate.swift in Sources */,
+				FFC9B1B827D3A6E2000FF31B /* Mailer.swift in Sources */,
 				FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */,
 				FFAFA36127D2402E00DB8808 /* SceneDelegate.swift in Sources */,
+				FFAFA38827D28DC400DB8808 /* FoggotPasswordVC.swift in Sources */,
 				FFAFA37927D2462E00DB8808 /* LoginVC.swift in Sources */,
 				C48912F527D26F6200AA8108 /* RegistrationVC.swift in Sources */,
 				C48912F727D286D700AA8108 /* Validation.swift in Sources */,

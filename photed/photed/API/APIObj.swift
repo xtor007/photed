@@ -17,4 +17,16 @@ class APIObj {
         return "1111"
     }
     
+    func getIDLogin(login: String) -> String {
+        return "id"
+    }
+    
+    func getEmailUser(id: String) -> String? {
+        return "tolxpams@gmail.com"
+    }
+    
+    func getPhoneUser(id: String) -> String? {
+        return nil
+    }
+    
 }

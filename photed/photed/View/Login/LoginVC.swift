@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import UIDrawer
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     lazy var loginLabel: UILabel = {
         let label = UILabel()
@@ -23,6 +24,8 @@ class LoginVC: UIViewController {
     
     lazy var loginText: UITextField = {
         let textField = UITextField()
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 10
         textField.adjustsFontSizeToFitWidth = true
@@ -38,6 +41,7 @@ class LoginVC: UIViewController {
     
     lazy var passwordText: UITextField = {
         let textField = UITextField()
+        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 8
         textField.adjustsFontSizeToFitWidth = true
@@ -139,6 +143,18 @@ class LoginVC: UIViewController {
     
     @objc private func foggotAction(sender: UIButton) {
         clearTextFields()
+        let foggotPasswordVC = FoggotPasswordVC()
+        foggotPasswordVC.modalPresentationStyle = .custom
+        foggotPasswordVC.transitioningDelegate = self
+        self.present(foggotPasswordVC, animated: true, completion: nil)
     }
 
+}
+
+extension LoginVC {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let presentationController = DrawerPresentationController(presentedViewController: presented, presenting: presenting, blurEffectStyle: .dark)
+        presentationController.topGap = 200
+        return presentationController
+    }
 }
