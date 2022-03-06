@@ -9,10 +9,8 @@ import Foundation
 
 extension String {
     func isLoginValid() -> Bool {
-        for user in db.users {
-            if user.login == self {
-               return false
-           }
+        if db.getAllLogins().firstIndex(of: self) != nil {
+            return false
         }
         let domainRange =  "(?:)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\\.(?!\\.))){0,28}(?:[A-Za-z0-9_]))?)"
         let loginTest = NSPredicate(format: "SELF MATCHES %@", domainRange)
@@ -27,20 +25,17 @@ extension String {
 
     func isEmailValid() -> Bool {
         let domainRange = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z.]{2,}"
-        for user in db.users {
-            if user.email == self {
-               return false
-           }
+        if db.getAllEmails().firstIndex(of: self) != nil {
+            return false
         }
         return NSPredicate(format:"SELF MATCHES %@", domainRange).evaluate(with: self)
     }
     
     func isPhoneValid() -> Bool {
-        let domainRange = "^\\(?\\d{3}\\)?[ -]?\\d{3}[ -]?\\d{4}$"
-        for user in db.users {
-            if user.phone == self {
-               return false
-           }
+        //let domainRange = "^\\(?\\d{3}\\)?[ -]?\\d{3}[ -]?\\d{4}$"
+        let domainRange = "^((\\+)|(00))[0-9]{6,14}$"
+        if db.getAllPhones().firstIndex(of: self) != nil {
+            return false
         }
         return NSPredicate(format:"SELF MATCHES %@", domainRange).evaluate(with: self)
     }

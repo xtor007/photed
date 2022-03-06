@@ -18,6 +18,7 @@ enum Field {
 class RegistrationVC: UIViewController {
     
     private var textFields: [Field: UITextField] = [.login : UITextField(), .password : UITextField(), .passwordAgain : UITextField(), .email : UITextField(), .phone : UITextField()]
+    private var isAvatarSet = false
         
     lazy var registrationLabel: UILabel = {
         let label = UILabel()
@@ -55,6 +56,7 @@ class RegistrationVC: UIViewController {
     lazy var loginText: UITextField = {
         let textField = UITextField()
         textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
+        textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 10
         textField.adjustsFontSizeToFitWidth = true
@@ -153,10 +155,11 @@ class RegistrationVC: UIViewController {
         overrideUserInterfaceStyle = .light
         view.backgroundColor = .gray
         drawInterface()
-//        loginText.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+        loginText.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
 //        for textField in textFields.values {
 //            textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
 //        }
+        //проще ж прописать внутри самих штук
     }
     
     private func clearTextFields() {
@@ -212,18 +215,19 @@ class RegistrationVC: UIViewController {
             showError(message: "Invalid phone number")
             phoneText.paintErrorBorder()
         default:
+            let image = isAvatarSet ? avatarImage.image : nil
+            db.postNewUser(avatar: image, login: loginText.text!, password: passwordText.text!, email: emailText.text, phone: phoneText.text)
             dismiss(animated: true, completion: nil)
         }
     }
     
-//    @objc func textFieldDidChange(_ textField: UITextField) {
-//            if let text:String = textField.text {
-//                DispatchQueue.main.async {
-//                    self.loginText.text = text.lowercased()
-//                }
-//            }
-//    }
-
+    @objc func textFieldDidChange(_ textField: UITextField) {
+            if let text:String = textField.text {
+                DispatchQueue.main.async {
+                    self.loginText.text = text.lowercased()
+                }
+            }
+    }
 }
 
 extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -231,7 +235,8 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-                avatarImage.image = image
+            avatarImage.image = image
+            isAvatarSet = true
         }
                 
         picker.dismiss(animated: true, completion: nil)
