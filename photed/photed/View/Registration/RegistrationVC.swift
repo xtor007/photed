@@ -21,130 +21,65 @@ class RegistrationVC: UIViewController {
     private var isAvatarSet = false
         
     lazy var registrationLabel: UILabel = {
-        let label = UILabel()
+        let label = standartLable()
         label.text = "REGISTRATION"
-        label.font = UIFont(name: "HelveticaNeue", size: 40)
-        label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .white
         label.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.labelHeight)
         return label
     }()
     
     lazy var avatarImage: UIImageView = {
-        let avatar = UIImageView()
-        avatar.backgroundColor = UIColor(named: "buttColor")
-        avatar.layer.cornerRadius = 100
-        avatar.clipsToBounds = true
-        avatar.image = UIImage(named: "none")
+        let avatar = standartAvatar()
+        //avatar.backgroundColor = UIColor(named: "buttColor")
         avatar.frame = CGRect(x: (view.frame.width-EnvData.bigAvatarHeight)/2, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance, width: EnvData.bigAvatarHeight, height: EnvData.bigAvatarHeight)
         return avatar
     }()
     
     lazy var pickPhotoButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttColor")
+        let button = standartButton()
         button.setTitle("Pickup Photo", for: .normal)
-        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(pickAction(sender:)), for: .touchUpInside)
         button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*2+EnvData.bigAvatarHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.buttonHeight/2)
         return button
-        //5*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight
     }()
     
     lazy var loginText: UITextField = {
-        let textField = UITextField()
-        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 10
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartTextField()
         textField.placeholder = "Enter your login..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*3+EnvData.bigAvatarHeight+EnvData.buttonHeight/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
     lazy var passwordText: UITextField = {
-        let textField = UITextField()
-        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartPasswordTextField()
         textField.placeholder = "Enter your password..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*4+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
     lazy var passwordTextAgain: UITextField = {
-        let textField = UITextField()
-        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartPasswordTextField()
         textField.placeholder = "Enter your password again..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.isSecureTextEntry = true
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*5+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight*2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
     lazy var emailText: UITextField = {
-        let textField = UITextField()
-        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartTextField()
         textField.placeholder = "Enter your email..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*6+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight*3, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
     lazy var phoneText: UITextField = {
-        let textField = UITextField()
-        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartTextField()
         textField.placeholder = "Enter your phone..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
         textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*7+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight*4, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         return textField
     }()
     
     lazy var registrationButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttColor")
+        let button = standartButton()
         button.setTitle("Login", for: .normal)
-        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(loginAction(sender:)), for: .touchUpInside)
         button.frame = CGRect(x: EnvData.paddingLeft, y: view.frame.height-EnvData.paddingDown-EnvData.buttonHeight - EnvData.presentModePaddingDown, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.buttonHeight)
         return button
