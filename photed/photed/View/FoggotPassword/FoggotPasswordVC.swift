@@ -13,6 +13,7 @@ class FoggotPasswordVC: UIViewController {
     
     lazy var loginText: UITextField = {
         let textField = UITextField()
+        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
@@ -48,6 +49,7 @@ class FoggotPasswordVC: UIViewController {
     
     lazy var codeText: UITextField = {
         let textField = UITextField()
+        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
         textField.textAlignment = .center
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
@@ -77,6 +79,7 @@ class FoggotPasswordVC: UIViewController {
     
     lazy var passwordText: UITextField = {
         let textField = UITextField()
+        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
         textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
@@ -94,6 +97,7 @@ class FoggotPasswordVC: UIViewController {
     
     lazy var passwordTextAgain: UITextField = {
         let textField = UITextField()
+        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
         textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
         textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
@@ -208,7 +212,8 @@ class FoggotPasswordVC: UIViewController {
             showError(message: "Passwords do not match")
             passwordTextAgain.paintErrorBorder()
         case .none:
-            print("ok")
+            db.postNewPassword(id: db.getIDLogin(login: loginText.text!), password: passwordText.text!)
+            dismiss(animated: true)
         }
     }
 

@@ -39,7 +39,11 @@ class APIObj {
         return nil
     }
     
+    func postNewPassword(id: String, password: String) {
+        
+    }
+    
 }
 
 // temp DB
-let DATABASE = APIObj()
+let db = APIObj()

@@ -9,7 +9,7 @@ import Foundation
 
 extension String {
     func isLoginValid() -> Bool {
-        for user in DATABASE.users {
+        for user in db.users {
             if user.login == self {
                return false
            }
@@ -27,7 +27,7 @@ extension String {
 
     func isEmailValid() -> Bool {
         let domainRange = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z.]{2,}"
-        for user in DATABASE.users {
+        for user in db.users {
             if user.email == self {
                return false
            }
@@ -37,7 +37,7 @@ extension String {
     
     func isPhoneValid() -> Bool {
         let domainRange = "^\\(?\\d{3}\\)?[ -]?\\d{3}[ -]?\\d{4}$"
-        for user in DATABASE.users {
+        for user in db.users {
             if user.phone == self {
                return false
            }

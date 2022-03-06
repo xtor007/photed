@@ -24,6 +24,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     lazy var loginText: UITextField = {
         let textField = UITextField()
+        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
@@ -41,6 +42,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     lazy var passwordText: UITextField = {
         let textField = UITextField()
+        textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
         textField.autocapitalizationType = .none
         textField.backgroundColor = UIColor.white
         textField.layer.cornerRadius = 8
@@ -137,7 +139,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
     @objc private func regAction(sender: UIButton) {
         let regView = RegistrationVC()
-        self.present(regView, animated: false, completion: nil)
+        self.present(regView, animated: true, completion: nil)
         clearTextFields()
     }
     
