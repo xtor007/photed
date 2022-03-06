@@ -18,125 +18,68 @@ enum Field {
 class RegistrationVC: UIViewController {
     
     private var textFields: [Field: UITextField] = [.login : UITextField(), .password : UITextField(), .passwordAgain : UITextField(), .email : UITextField(), .phone : UITextField()]
+    private var isAvatarSet = false
         
     lazy var registrationLabel: UILabel = {
-        let label = UILabel()
+        let label = standartLable()
         label.text = "REGISTRATION"
-        label.font = UIFont(name: "HelveticaNeue", size: 40)
-        label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
-        label.adjustsFontForContentSizeCategory = true
-        label.textColor = .white
         label.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.labelHeight)
         return label
     }()
     
     lazy var avatarImage: UIImageView = {
-        let avatar = UIImageView()
-        avatar.backgroundColor = UIColor(named: "buttColor")
-        avatar.layer.cornerRadius = 100
-        avatar.clipsToBounds = true
-        avatar.image = UIImage(named: "none")
-        avatar.frame = CGRect(x: view.frame.width - (EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2)/0.7, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance, width: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2, height: EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight*2)
+        let avatar = standartAvatar()
+        //avatar.backgroundColor = UIColor(named: "buttColor")
+        avatar.frame = CGRect(x: (view.frame.width-EnvData.bigAvatarHeight)/2, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance, width: EnvData.bigAvatarHeight, height: EnvData.bigAvatarHeight)
         return avatar
     }()
     
     lazy var pickPhotoButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttColor")
+        let button = standartButton()
         button.setTitle("Pickup Photo", for: .normal)
-        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(pickAction(sender:)), for: .touchUpInside)
-        button.frame = CGRect(x: EnvData.paddingLeft, y: 5*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
+        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*2+EnvData.bigAvatarHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.buttonHeight/2)
         return button
     }()
     
-    lazy var nicknameText: UITextField = {
-        let textField = UITextField()
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 10
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
-        textField.placeholder = "Enter your nickname..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
+    lazy var loginText: UITextField = {
+        let textField = standartTextField()
+        textField.placeholder = "Enter your login..."
+        textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*3+EnvData.bigAvatarHeight+EnvData.buttonHeight/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
         return textField
     }()
     
     lazy var passwordText: UITextField = {
-        let textField = UITextField()
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartPasswordTextField()
         textField.placeholder = "Enter your password..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.isSecureTextEntry = true
-        textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
+        textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*4+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
         return textField
     }()
     
     lazy var passwordTextAgain: UITextField = {
-        let textField = UITextField()
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartPasswordTextField()
         textField.placeholder = "Enter your password again..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.isSecureTextEntry = true
-        textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
+        textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*5+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight*2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
         return textField
     }()
     
     lazy var emailText: UITextField = {
-        let textField = UITextField()
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartTextField()
         textField.placeholder = "Enter your email..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
+        textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*6+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight*3, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
         return textField
     }()
     
     lazy var phoneText: UITextField = {
-        let textField = UITextField()
-        textField.autocapitalizationType = .none
-        textField.backgroundColor = UIColor.white
-        textField.layer.cornerRadius = 8
-        textField.adjustsFontSizeToFitWidth = true
-        textField.minimumFontSize = 14
+        let textField = standartTextField()
         textField.placeholder = "Enter your phone..."
-        textField.clearButtonMode = .whileEditing
-        textField.clearButtonMode = .unlessEditing
-        textField.clearButtonMode = .always
-        textField.frame = CGRect(x: EnvData.paddingLeft, y: 6*EnvData.paddingUp+EnvData.blockDistance+EnvData.labelHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.textFieldHeight+EnvData.blockDistance+EnvData.labelHeight, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
-        textField.layer.borderColor = CGColor.init(red: 100, green: 0, blue: 0, alpha: 1)
+        textField.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance*7+EnvData.bigAvatarHeight+EnvData.buttonHeight/2+EnvData.textFieldHeight*4, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.textFieldHeight)
         return textField
     }()
     
     lazy var registrationButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = UIColor(named: "buttColor")
+        let button = standartButton()
         button.setTitle("Login", for: .normal)
-        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(loginAction(sender:)), for: .touchUpInside)
         button.frame = CGRect(x: EnvData.paddingLeft, y: view.frame.height-EnvData.paddingDown-EnvData.buttonHeight - EnvData.presentModePaddingDown, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.buttonHeight)
         return button
@@ -147,14 +90,15 @@ class RegistrationVC: UIViewController {
         overrideUserInterfaceStyle = .light
         view.backgroundColor = .gray
         drawInterface()
-        nicknameText.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
-        for textField in textFields.values {
-            textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
-        }
+        loginText.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: UIControl.Event.editingChanged)
+//        for textField in textFields.values {
+//            textField.addTarget(self, action: #selector(self.textFieldDidTaped(_:)), for: UIControl.Event.editingChanged)
+//        }
+        //проще ж прописать внутри самих штук
     }
     
     private func clearTextFields() {
-        nicknameText.breakBorder()
+        loginText.breakBorder()
         passwordText.breakBorder()
         passwordTextAgain.breakBorder()
         emailText.breakBorder()
@@ -165,7 +109,7 @@ class RegistrationVC: UIViewController {
         view.addSubview(registrationLabel)
         view.addSubview(avatarImage)
         view.addSubview(pickPhotoButton)
-        view.addSubview(nicknameText); textFields.updateValue(nicknameText, forKey: .login)
+        view.addSubview(loginText); textFields.updateValue(loginText, forKey: .login)
         view.addSubview(passwordText); textFields.updateValue(passwordText, forKey: .password)
         view.addSubview(passwordTextAgain); textFields.updateValue(passwordTextAgain, forKey: .passwordAgain)
         view.addSubview(emailText); textFields.updateValue(emailText, forKey: .email)
@@ -182,11 +126,12 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func loginAction(sender: UIButton) {
+        clearTextFields()
         let regCheck = RegistrationCheck().isDataNorm(textFields)
         switch regCheck {
         case _ where regCheck == .loginEmpty || regCheck == .loginError:
             _ = regCheck == .loginEmpty ? showError(message: "Empty login") : showError(message: "Invalid login")
-            nicknameText.paintErrorBorder()
+            loginText.paintErrorBorder()
         case _ where regCheck == .passwordEmpty || regCheck == .passwordError:
             _ = regCheck == .passwordEmpty ? showError(message: "Empty password") : showError(message: "Invalid password")
             passwordText.paintErrorBorder()
@@ -205,7 +150,8 @@ class RegistrationVC: UIViewController {
             showError(message: "Invalid phone number")
             phoneText.paintErrorBorder()
         default:
-            clearTextFields()
+            let image = isAvatarSet ? avatarImage.image : nil
+            db.postNewUser(avatar: image, login: loginText.text!, password: passwordText.text!, email: emailText.text, phone: phoneText.text)
             dismiss(animated: true, completion: nil)
         }
     }
@@ -213,12 +159,10 @@ class RegistrationVC: UIViewController {
     @objc func textFieldDidChange(_ textField: UITextField) {
             if let text:String = textField.text {
                 DispatchQueue.main.async {
-                    self.nicknameText.text = text.lowercased()
+                    self.loginText.text = text.lowercased()
                 }
             }
-
     }
-
 }
 
 extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -226,7 +170,8 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[UIImagePickerController.InfoKey(rawValue: "UIImagePickerControllerEditedImage")] as? UIImage {
-                avatarImage.image = image
+            avatarImage.image = image
+            isAvatarSet = true
         }
                 
         picker.dismiss(animated: true, completion: nil)

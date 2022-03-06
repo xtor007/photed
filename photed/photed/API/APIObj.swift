@@ -5,19 +5,20 @@
 //  Created by Anatoliy Khramchenko on 04.03.2022.
 //
 
-import Foundation
+import UIKit
 
-struct UserInfo {
-    var id: String
-    var login: String
-    var email: String
-    var phone: String
-    var password: String
-}
+//struct UserInfo {
+//    var id: String
+//    var login: String
+//    var email: String
+//    var phone: String
+//    var password: String
+//}
+// в другом файле
 
 class APIObj {
     
-    var users: [UserInfo] = []
+    //var users: [UserInfo] = [] этот класс не для этого
     
     func getAllLogins() -> [String] {
         return ["xtor","berlinium"]
@@ -39,7 +40,23 @@ class APIObj {
         return nil
     }
     
+    func postNewPassword(id: String, password: String) {
+        
+    }
+    
+    func getAllEmails() -> [String] {
+        return ["tolxpams@gmail.com"]
+    }
+    
+    func getAllPhones() -> [String] {
+        return ["+380669214490"]
+    }
+    
+    func postNewUser(avatar: UIImage?, login: String, password: String, email: String?, phone: String?) {
+        
+    }
+    
 }
 
 // temp DB
-let DATABASE = APIObj()
+let db = APIObj()
