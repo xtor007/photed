@@ -15,9 +15,8 @@
 		C48912F527D26F6200AA8108 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48912F427D26F6200AA8108 /* RegistrationVC.swift */; };
 		C48912F727D286D700AA8108 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48912F627D286D700AA8108 /* Validation.swift */; };
 		C48912F927D390C100AA8108 /* RegistrationCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48912F827D390C100AA8108 /* RegistrationCheck.swift */; };
-		C489130227D41B4300AA8108 /* PostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C489130127D41B4300AA8108 /* PostsVC.swift */; };
-		C48912FD27D3DBEE00AA8108 /* PostsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48912FC27D3DBEE00AA8108 /* PostsController.swift */; };
 		C48912FF27D3DF9700AA8108 /* TextFieldsClicks.swift in Sources */ = {isa = PBXBuildFile; fileRef = C48912FE27D3DF9700AA8108 /* TextFieldsClicks.swift */; };
+		C489130227D41B4300AA8108 /* PostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C489130127D41B4300AA8108 /* PostsVC.swift */; };
 		FFAFA35F27D2402E00DB8808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA35E27D2402E00DB8808 /* AppDelegate.swift */; };
 		FFAFA36127D2402E00DB8808 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA36027D2402E00DB8808 /* SceneDelegate.swift */; };
 		FFAFA36627D2402E00DB8808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFAFA36427D2402E00DB8808 /* Main.storyboard */; };
@@ -44,9 +43,8 @@
 		C48912F427D26F6200AA8108 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
 		C48912F627D286D700AA8108 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		C48912F827D390C100AA8108 /* RegistrationCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCheck.swift; sourceTree = "<group>"; };
-		C489130127D41B4300AA8108 /* PostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsVC.swift; sourceTree = "<group>"; };
-		C48912FC27D3DBEE00AA8108 /* PostsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsController.swift; sourceTree = "<group>"; };
 		C48912FE27D3DF9700AA8108 /* TextFieldsClicks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldsClicks.swift; sourceTree = "<group>"; };
+		C489130127D41B4300AA8108 /* PostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsVC.swift; sourceTree = "<group>"; };
 		D21F27E9DA44BDC6B4564073 /* Pods-photed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photed.release.xcconfig"; path = "Target Support Files/Pods-photed/Pods-photed.release.xcconfig"; sourceTree = "<group>"; };
 		D91C46B49A12CB2202BF99F1 /* Pods-photed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-photed.debug.xcconfig"; path = "Target Support Files/Pods-photed/Pods-photed.debug.xcconfig"; sourceTree = "<group>"; };
 		FAEAAC1590A58D16BE4DBE5F /* Pods_photed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,14 +146,6 @@
 			path = PostsController;
 			sourceTree = "<group>";
 		};
-		C48912FB27D3DBC700AA8108 /* PostsController */ = {
-			isa = PBXGroup;
-			children = (
-				C48912FC27D3DBEE00AA8108 /* PostsController.swift */,
-			);
-			path = PostsController;
-			sourceTree = "<group>";
-		};
 		FFAFA35227D2402D00DB8808 = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +185,6 @@
 				C41DF5FA27D4DCAD005509A5 /* SearchController */,
 				C41DF5F927D4DC9F005509A5 /* ProfileController */,
 				C489130027D41AEF00AA8108 /* PostsController */,
-				C48912FB27D3DBC700AA8108 /* PostsController */,
 				C48912F327D26F4500AA8108 /* Registration */,
 				FFAFA38627D28D7E00DB8808 /* FoggotPassword */,
 				FFAFA37727D245C900DB8808 /* Login */,
@@ -414,7 +403,6 @@
 				C41DF60127D4E00B005509A5 /* AddingVC.swift in Sources */,
 				C41DF5FD27D4DFE3005509A5 /* ProfileVC.swift in Sources */,
 				C489130227D41B4300AA8108 /* PostsVC.swift in Sources */,
-				C48912FD27D3DBEE00AA8108 /* PostsController.swift in Sources */,
 				FFAFA37C27D25B5200DB8808 /* EnvData.swift in Sources */,
 				FFAFA38227D27E2E00DB8808 /* ShowError.swift in Sources */,
 			);

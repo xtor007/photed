@@ -108,9 +108,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
             let titles = ["Home", "Search", "Add", "Notifications", "Profile"]
             let viewControllers = [PostsVC(), SearchVC(), AddingVC(), NotificationVC(), ProfileVC()]
             _ = viewControllers.map{$0.title = titles[viewControllers.firstIndex(of: $0)!]}
-            let navigationVC = viewControllers.map{UINavigationController(rootViewController: $0)}
-            _ = navigationVC.map{$0.navigationBar.backgroundColor = .white}
-            tabBar.setViewControllers(navigationVC, animated: true)
+            tabBar.setViewControllers(viewControllers, animated: true)
             guard let items = tabBar.tabBar.items else {
                 return
             }
