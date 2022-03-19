@@ -61,7 +61,7 @@
                 <outlet property="loginLabel" destination="13H-Hx-ses" id="wtc-p6-J0J"/>
                 <outlet property="statistikLabel" destination="Mgu-E8-ScS" id="j8a-sL-pss"/>
             </connections>
-            <point key="canvasLocation" x="150.72463768115944" y="82.366071428571431"/>
+            <point key="canvasLocation" x="-39" y="65"/>
         </tableViewCell>
     </objects>
 </document>

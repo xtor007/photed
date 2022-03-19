@@ -15,6 +15,8 @@ class SearchVC: UIViewController {
     
     var users: [User] = []
     
+    let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
@@ -31,6 +33,12 @@ class SearchVC: UIViewController {
         usersTable.backgroundColor = .black
         usersTable.separatorColor = .white
         view.addSubview(usersTable)
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Enter the desired login..."
+        searchController.searchBar.backgroundColor = .red //?
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
 }
@@ -44,19 +52,39 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         let user = users[indexPath.row]
-        if user.avatarLink == nil {
-            cell.avatarImage.image = UIImage(named: "none")
-        } else {
-            let url = URL(string: user.avatarLink!)
-            if let data = try? Data(contentsOf: url!) {
-                cell.avatarImage.image = UIImage(data: data)
-            } else {
-                cell.avatarImage.image = UIImage(named: "none")
+        cell.avatarImage.image = UIImage(named: "none")
+//        if user.avatarLink != nil {
+//            let url = URL(string: user.avatarLink!)
+//            if let data = try? Data(contentsOf: url!) {
+//                cell.avatarImage.image = UIImage(data: data)
+//            }
+//        }
+        async {
+            if let image = try await getImage(link: user.avatarLink) {
+                cell.avatarImage.image = image
             }
         }
         cell.loginLabel.text = user.login
         cell.statistikLabel.text = "\(db.getCountOfLike(loginId: user.id))|\(db.getCountOfSee(loginId: user.id))"
         return cell
+    }
+    
+    func getImage(link: String?) async throws -> UIImage? {
+        if link != nil {
+            let url = URL(string: link!)
+            if let data = try? Data(contentsOf: url!) {
+                return UIImage(data: data)
+            }
+        }
+        return nil
+    }
+    
+}
+
+extension SearchVC: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
     }
     
 }
