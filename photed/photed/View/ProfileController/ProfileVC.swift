@@ -8,8 +8,12 @@
 import UIKit
 
 class ProfileVC: UIViewController {
+    
+    var userLoginId: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .orange
     }
+    
 }
