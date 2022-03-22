@@ -65,7 +65,7 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
             }
         }
         cell.loginLabel.text = user.login
-        cell.statistikLabel.text = "\(db.getCountOfLike(loginId: user.id))|\(db.getCountOfSee(loginId: user.id))"
+        cell.statistikLabel.text = "\(db.getCountOfLike(loginId: user.id).reductionInt())|\(db.getCountOfSee(loginId: user.id).reductionInt())"
         return cell
     }
     
