@@ -15,6 +15,7 @@ class MyProfileVC: ProfileVC {
         userLoginLabel.text = db.getLoginById(id: userLoginId!)
         editPhoto()
         loadData()
+        postsCollectionView.reloadData()
     }
     
 }

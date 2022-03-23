@@ -13,6 +13,8 @@ class ProfileVC: UIViewController {
     
     var posts: [Post] = []
     
+    let cellId = "postCellInProfile"
+    
     var colorStatusBar: Bool = true {
         didSet {
             setNeedsStatusBarAppearanceUpdate()
@@ -68,6 +70,8 @@ class ProfileVC: UIViewController {
         return label
     }()
     
+    var postsCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
@@ -83,6 +87,16 @@ class ProfileVC: UIViewController {
         view.addSubview(statistikSeesData)
         view.addSubview(statistikLikesData)
         loadData()
+        postsCollectionView = UICollectionView(frame: CGRect(x: 0, y: userAvatarImage.frame.maxY+EnvData.blockDistance, width: view.frame.width, height: view.frame.height-userAvatarImage.frame.maxY-EnvData.blockDistance), collectionViewLayout: UICollectionViewFlowLayout.init())
+        let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
+        layout.scrollDirection = UICollectionView.ScrollDirection.vertical
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        postsCollectionView.setCollectionViewLayout(layout, animated: true)
+        postsCollectionView.register(UINib(nibName: "PostInProfileCell", bundle: nil), forCellWithReuseIdentifier: cellId)
+        postsCollectionView.dataSource = self
+        postsCollectionView.delegate = self
+        view.addSubview(postsCollectionView)
     }
     
     func editPhoto() {
@@ -118,6 +132,30 @@ class ProfileVC: UIViewController {
                 statistikLikesData.text! += count
             }
         }
+    }
+    
+}
+
+extension ProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PostInProfileCell
+        cell.image.image = UIImage(named: "none")
+        let post = posts[indexPath.row]
+        async {
+            if let image = try await getImage(link: post.photoLink) {
+                cell.image.image = image
+            }
+        }
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width/3, height: view.frame.width/3)
     }
     
 }

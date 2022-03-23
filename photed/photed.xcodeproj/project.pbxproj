@@ -20,6 +20,8 @@
 		FF928B6127EA2BD300311767 /* ReductionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6027EA2BD300311767 /* ReductionInt.swift */; };
 		FF928B6327EA69CB00311767 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6227EA69CB00311767 /* MyProfileVC.swift */; };
 		FF928B6527EB2CA000311767 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6427EB2CA000311767 /* Post.swift */; };
+		FF928B6927EB4FDF00311767 /* PostInProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6727EB4FDF00311767 /* PostInProfileCell.swift */; };
+		FF928B6A27EB4FDF00311767 /* PostInProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF928B6827EB4FDF00311767 /* PostInProfileCell.xib */; };
 		FFAFA35F27D2402E00DB8808 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA35E27D2402E00DB8808 /* AppDelegate.swift */; };
 		FFAFA36127D2402E00DB8808 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFAFA36027D2402E00DB8808 /* SceneDelegate.swift */; };
 		FFAFA36627D2402E00DB8808 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFAFA36427D2402E00DB8808 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		FF928B6027EA2BD300311767 /* ReductionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionInt.swift; sourceTree = "<group>"; };
 		FF928B6227EA69CB00311767 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		FF928B6427EB2CA000311767 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		FF928B6727EB4FDF00311767 /* PostInProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostInProfileCell.swift; sourceTree = "<group>"; };
+		FF928B6827EB4FDF00311767 /* PostInProfileCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostInProfileCell.xib; sourceTree = "<group>"; };
 		FFAFA35B27D2402E00DB8808 /* photed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFAFA35E27D2402E00DB8808 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFAFA36027D2402E00DB8808 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 		C41DF5F927D4DC9F005509A5 /* ProfileController */ = {
 			isa = PBXGroup;
 			children = (
+				FF928B6627EB4FA900311767 /* Cell */,
 				C41DF5FC27D4DFE3005509A5 /* ProfileVC.swift */,
 				FF928B6227EA69CB00311767 /* MyProfileVC.swift */,
 			);
@@ -158,6 +163,15 @@
 				C489130127D41B4300AA8108 /* PostsVC.swift */,
 			);
 			path = PostsController;
+			sourceTree = "<group>";
+		};
+		FF928B6627EB4FA900311767 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF928B6727EB4FDF00311767 /* PostInProfileCell.swift */,
+				FF928B6827EB4FDF00311767 /* PostInProfileCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		FFAFA35227D2402D00DB8808 = {
@@ -357,6 +371,7 @@
 				FFC9B1EF27D63969000FF31B /* UserCell.xib in Resources */,
 				FFAFA36B27D2403800DB8808 /* LaunchScreen.storyboard in Resources */,
 				FFAFA36827D2403800DB8808 /* Assets.xcassets in Resources */,
+				FF928B6A27EB4FDF00311767 /* PostInProfileCell.xib in Resources */,
 				FFAFA36627D2402E00DB8808 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +441,7 @@
 				FFAFA38827D28DC400DB8808 /* FoggotPasswordVC.swift in Sources */,
 				FFAFA37927D2462E00DB8808 /* LoginVC.swift in Sources */,
 				C41DF62427D50881005509A5 /* NotificationVC.swift in Sources */,
+				FF928B6927EB4FDF00311767 /* PostInProfileCell.swift in Sources */,
 				C48912F527D26F6200AA8108 /* RegistrationVC.swift in Sources */,
 				C41DF5FF27D4DFFE005509A5 /* SearchVC.swift in Sources */,
 				C48912F727D286D700AA8108 /* Validation.swift in Sources */,
