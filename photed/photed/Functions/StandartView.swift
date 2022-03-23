@@ -56,7 +56,7 @@ extension UIViewController {
     
     func standartAvatar() -> UIImageView {
         let avatar = UIImageView()
-        avatar.layer.cornerRadius = 100
+        //avatar.layer.cornerRadius = 100
         avatar.clipsToBounds = true
         avatar.image = UIImage(named: "none")
         return avatar

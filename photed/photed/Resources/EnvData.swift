@@ -13,7 +13,7 @@ class EnvData {
     static let presentModePaddingDown: CGFloat = 40
     static let paddingLeft: CGFloat = 10
     static let paddingUp: CGFloat = 40
-    static let searchHeight: CGFloat = 40
+    static let searchHeight: CGFloat = 60
     static let labelHeight: CGFloat = 40
     static let blockDistance: CGFloat = 20
     static let textFieldHeight: CGFloat = 20

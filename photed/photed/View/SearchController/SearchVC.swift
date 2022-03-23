@@ -10,6 +10,16 @@ import UIKit
 
 class SearchVC: UIViewController {
     
+    var colorStatusBar: Bool = true {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var usersTable: UITableView!
     let cellId = "usersCells"
     
@@ -37,7 +47,8 @@ class SearchVC: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.backgroundColor = .black
-        searchController.searchBar.frame = CGRect(x: 0, y: EnvData.paddingUp/4, width: view.frame.width, height: EnvData.searchHeight)
+        searchController.searchBar.searchTextField.backgroundColor = .white
+        searchController.searchBar.frame = CGRect(x: 0, y: EnvData.paddingUp/3, width: view.frame.width, height: EnvData.searchHeight)
         view.addSubview(searchController.searchBar)
         navigationItem.searchController = searchController
         definesPresentationContext = true

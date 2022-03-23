@@ -20,6 +20,8 @@ class APIObj {
     
     //var users: [UserInfo] = [] этот класс не для этого
     
+    var loginId: String!
+    
     func getAllLogins() -> [String] {
         return ["xtor","berlinium"]
     }
@@ -30,6 +32,14 @@ class APIObj {
     
     func getIDLogin(login: String) -> String {
         return "id"
+    }
+    
+    func getLoginById(id: String) -> String {
+        return "xtor"
+    }
+    
+    func getAvatarLinkById(id: String) -> String? {
+        return "https://lifehacker.ru/special/fujifilm/dist/static/img/5.2410a2d.jpg"
     }
     
     func getEmailUser(id: String) -> String? {
@@ -70,6 +80,10 @@ class APIObj {
     
     func getCountOfSee(loginId: String) -> Int {
         return 1000
+    }
+    
+    func getAllPosts(loginId: String) -> [Post] {
+        return [Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),Post(id: "a", photoLink: "https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?cs=srgb&dl=pexels-nextvoyage-1461974.jpg&fm=jpg"),Post(id: "a", photoLink: "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),Post(id: "a", photoLink: "https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?cs=srgb&dl=pexels-nextvoyage-1461974.jpg&fm=jpg"),Post(id: "a", photoLink: "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),Post(id: "a", photoLink: "https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?cs=srgb&dl=pexels-nextvoyage-1461974.jpg&fm=jpg"),Post(id: "a", photoLink: "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),Post(id: "a", photoLink: "https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?cs=srgb&dl=pexels-nextvoyage-1461974.jpg&fm=jpg"),Post(id: "a", photoLink: "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),Post(id: "a", photoLink: "https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?cs=srgb&dl=pexels-nextvoyage-1461974.jpg&fm=jpg"),Post(id: "a", photoLink: "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),Post(id: "a", photoLink: "https://images.pexels.com/photos/1461974/pexels-photo-1461974.jpeg?cs=srgb&dl=pexels-nextvoyage-1461974.jpg&fm=jpg"),Post(id: "a", photoLink: "https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg"),Post(id: "a", photoLink: "https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGhvdG9ncmFwaGVyfGVufDB8fDB8fA%3D%3D&w=1000&q=80")]
     }
     
 }
