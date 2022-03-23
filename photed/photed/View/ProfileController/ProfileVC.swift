@@ -76,10 +76,10 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         view.backgroundColor = .black
-        drawInterface()
+        //drawInterface()
     }
     
-    private func drawInterface() {
+    func drawInterface() {
         view.addSubview(userLoginLabel)
         view.addSubview(userAvatarImage)
         editPhoto()

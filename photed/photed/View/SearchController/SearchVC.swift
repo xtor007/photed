@@ -86,6 +86,14 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
         return nil
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let profileVC = ProfileVC()
+        profileVC.userLoginId = users[indexPath.row].id
+        profileVC.drawInterface()
+        profileVC.modalPresentationStyle = .fullScreen
+        self.present(profileVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension SearchVC: UISearchResultsUpdating {

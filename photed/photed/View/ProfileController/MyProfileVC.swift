@@ -12,10 +12,11 @@ class MyProfileVC: ProfileVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         userLoginId = db.loginId
-        userLoginLabel.text = db.getLoginById(id: userLoginId!)
-        editPhoto()
-        loadData()
-        postsCollectionView.reloadData()
+        drawInterface()
+//        userLoginLabel.text = db.getLoginById(id: userLoginId!)
+//        editPhoto()
+//        loadData()
+//        postsCollectionView.reloadData()
     }
     
 }
