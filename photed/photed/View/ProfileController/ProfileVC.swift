@@ -31,8 +31,15 @@ class ProfileVC: UIViewController {
         if let userLoginIdOp: String = userLoginId {
             label.text = db.getLoginById(id: userLoginIdOp)
         }
-        label.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp/2, width: view.frame.width/2, height: EnvData.labelHeight)
+        label.frame = CGRect(x: EnvData.paddingLeft + EnvData.backButtonWidth, y: EnvData.paddingUp/2, width: view.frame.width/2, height: EnvData.labelHeight)
         return label
+    }()
+    
+    lazy var backButton: UIButton = {
+        let button = standartBackButton()
+        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp/2, width: EnvData.backButtonWidth, height: EnvData.backButtonHeight)
+        button.addTarget(self, action: #selector(backAction(sender:)), for: .touchUpInside)
+        return button
     }()
     
     lazy var userAvatarImage: UIImageView = {
@@ -97,11 +104,7 @@ class ProfileVC: UIViewController {
         postsCollectionView.dataSource = self
         postsCollectionView.delegate = self
         view.addSubview(postsCollectionView)
-        navigationItem.title = "dfskhbvhkfnbnkf"
-        navigationItem.titleView?.backgroundColor = .red
-        let item = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
-        item.image = UIImage(systemName: "plus.fill")
-        navigationItem.backBarButtonItem = item
+        view.addSubview(backButton)
     }
     
     func editPhoto() {
@@ -127,6 +130,9 @@ class ProfileVC: UIViewController {
     func loadData() {
         if posts.isEmpty {
             if let login = userLoginId {
+                if let userLoginIdOp: String = userLoginId {
+                    userLoginLabel.text = db.getLoginById(id: userLoginIdOp)
+                }
                 posts = db.getAllPosts(loginId: login)
                 if let count = posts.count.reductionInt() {
                     statistikPostData.text! += count
@@ -139,6 +145,10 @@ class ProfileVC: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc private func backAction(sender: UIButton) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

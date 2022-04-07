@@ -13,10 +13,12 @@ class MyProfileVC: ProfileVC {
         super.viewDidLoad()
         userLoginId = db.loginId
         drawInterface()
-//        userLoginLabel.text = db.getLoginById(id: userLoginId!)
-//        editPhoto()
-//        loadData()
-//        postsCollectionView.reloadData()
+        deleteBack()
+    }
+    
+    private func deleteBack() {
+        backButton.isHidden = true
+        userLoginLabel.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp/2, width: view.frame.width/2, height: EnvData.labelHeight)
     }
     
 }

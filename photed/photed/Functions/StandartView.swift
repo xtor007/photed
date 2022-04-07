@@ -62,4 +62,10 @@ extension UIViewController {
         return avatar
     }
     
+    func standartBackButton() -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        return button
+    }
+    
 }

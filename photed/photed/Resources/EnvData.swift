@@ -22,5 +22,7 @@ class EnvData {
     static let littleButtonHeight: CGFloat = 20
     static let segmentHeight: CGFloat = 20
     static let bigAvatarHeight: CGFloat = 200
+    static let backButtonWidth: CGFloat = 24
+    static let backButtonHeight: CGFloat = 40
     
 }
