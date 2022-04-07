@@ -76,7 +76,7 @@ class ProfileVC: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         view.backgroundColor = .black
-        //drawInterface()
+        drawInterface()
     }
     
     func drawInterface() {
@@ -97,6 +97,11 @@ class ProfileVC: UIViewController {
         postsCollectionView.dataSource = self
         postsCollectionView.delegate = self
         view.addSubview(postsCollectionView)
+        navigationItem.title = "dfskhbvhkfnbnkf"
+        navigationItem.titleView?.backgroundColor = .red
+        let item = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
+        item.image = UIImage(systemName: "plus.fill")
+        navigationItem.backBarButtonItem = item
     }
     
     func editPhoto() {
@@ -120,16 +125,18 @@ class ProfileVC: UIViewController {
     }
     
     func loadData() {
-        if let login = userLoginId {
-            posts = db.getAllPosts(loginId: login)
-            if let count = posts.count.reductionInt() {
-                statistikPostData.text! += count
-            }
-            if let count = db.getCountOfSee(loginId: login).reductionInt() {
-                statistikSeesData.text! += count
-            }
-            if let count = db.getCountOfLike(loginId: login).reductionInt() {
-                statistikLikesData.text! += count
+        if posts.isEmpty {
+            if let login = userLoginId {
+                posts = db.getAllPosts(loginId: login)
+                if let count = posts.count.reductionInt() {
+                    statistikPostData.text! += count
+                }
+                if let count = db.getCountOfSee(loginId: login).reductionInt() {
+                    statistikSeesData.text! += count
+                }
+                if let count = db.getCountOfLike(loginId: login).reductionInt() {
+                    statistikLikesData.text! += count
+                }
             }
         }
     }
