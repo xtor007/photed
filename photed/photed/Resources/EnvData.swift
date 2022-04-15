@@ -25,4 +25,7 @@ class EnvData {
     static let backButtonWidth: CGFloat = 24
     static let backButtonHeight: CGFloat = 40
     
+    static var loginButtonY: CGFloat = 0
+    static var isNeedToChangeBackLogin = true
+    
 }

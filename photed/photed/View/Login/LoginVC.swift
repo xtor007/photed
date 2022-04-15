@@ -87,6 +87,8 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         view.addSubview(loginButton)
         view.addSubview(regButton)
         view.addSubview(foggotPasswordButton)
+        EnvData.loginButtonY = loginButton.frame.origin.y
+        loginButton.bindToKeyboard()
     }
     
     private func clearTextFields() {
