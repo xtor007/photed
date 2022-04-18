@@ -65,6 +65,7 @@ extension UIViewController {
     func standartBackButton() -> UIButton {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .white
         return button
     }
     
