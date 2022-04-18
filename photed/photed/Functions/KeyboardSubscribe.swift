@@ -27,7 +27,6 @@ extension UIView {
 //            }
 //            EnvData.isNeedToChangeBackLogin.toggle()
             self.frame.origin.y += deltaY
-            print(self.frame.origin.y)
         }, completion: nil)
         
 //        UIView.animateKeyframes(withDuration: duration, delay: 0.0, options: UIView.KeyframeAnimationOptions(rawValue: curve), animations: {

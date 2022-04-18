@@ -80,6 +80,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         drawInterface()
     }
     
+    
     private func drawInterface() {
         view.addSubview(loginLabel)
         view.addSubview(loginText)
@@ -88,7 +89,9 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         view.addSubview(regButton)
         view.addSubview(foggotPasswordButton)
         EnvData.loginButtonY = loginButton.frame.origin.y
-        loginButton.bindToKeyboard()
+        //loginButton.bindToKeyboard()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToSpace(sender:)))
+        view.addGestureRecognizer(tap)
     }
     
     private func clearTextFields() {
@@ -96,6 +99,11 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         passwordText.breakBorder()
     }
     
+    @objc private func tapToSpace(sender: Any) {
+        print("ABOBA")
+        loginText.endEditing(true)
+        passwordText.endEditing(true)
+    }
 
     @objc private func loginAction(sender: UIButton) {
         clearTextFields()
