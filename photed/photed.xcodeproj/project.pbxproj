@@ -19,6 +19,7 @@
 		C489130227D41B4300AA8108 /* PostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C489130127D41B4300AA8108 /* PostsVC.swift */; };
 		FF2FD37E2809F0F300CD5E2D /* KeyboardSubscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD37D2809F0F300CD5E2D /* KeyboardSubscribe.swift */; };
 		FF2FD3BE280D8F4500CD5E2D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3BD280D8F4400CD5E2D /* SettingsVC.swift */; };
+		FF2FD3C0281002B600CD5E2D /* GetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3BF281002B600CD5E2D /* GetImage.swift */; };
 		FF928B6127EA2BD300311767 /* ReductionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6027EA2BD300311767 /* ReductionInt.swift */; };
 		FF928B6327EA69CB00311767 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6227EA69CB00311767 /* MyProfileVC.swift */; };
 		FF928B6527EB2CA000311767 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6427EB2CA000311767 /* Post.swift */; };
@@ -60,6 +61,7 @@
 		FAEAAC1590A58D16BE4DBE5F /* Pods_photed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_photed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2FD37D2809F0F300CD5E2D /* KeyboardSubscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSubscribe.swift; sourceTree = "<group>"; };
 		FF2FD3BD280D8F4400CD5E2D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		FF2FD3BF281002B600CD5E2D /* GetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImage.swift; sourceTree = "<group>"; };
 		FF928B6027EA2BD300311767 /* ReductionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionInt.swift; sourceTree = "<group>"; };
 		FF928B6227EA69CB00311767 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		FF928B6427EB2CA000311767 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				FFC9B1C727D4DEBC000FF31B /* StandartView.swift */,
 				FF928B6027EA2BD300311767 /* ReductionInt.swift */,
 				FF2FD37D2809F0F300CD5E2D /* KeyboardSubscribe.swift */,
+				FF2FD3BF281002B600CD5E2D /* GetImage.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 				FFAFA38A27D3822F00DB8808 /* FoggotPasswordCheck.swift in Sources */,
 				FFC9B1BA27D3A731000FF31B /* SMSSender.swift in Sources */,
 				FFAFA37E27D26F4000DB8808 /* APIObj.swift in Sources */,
+				FF2FD3C0281002B600CD5E2D /* GetImage.swift in Sources */,
 				FFAFA35F27D2402E00DB8808 /* AppDelegate.swift in Sources */,
 				FFC9B1B827D3A6E2000FF31B /* Mailer.swift in Sources */,
 				FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */,

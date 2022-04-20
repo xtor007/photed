@@ -76,20 +76,20 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func getImage(link: String?) async throws -> UIImage? {
-        if link != nil {
-            let url = URL(string: link!)
-            if let data = try? Data(contentsOf: url!) {
-                return UIImage(data: data)
-            }
-        }
-        return nil
-    }
+//    func getImage(link: String?) async throws -> UIImage? {
+//        if link != nil {
+//            let url = URL(string: link!)
+//            if let data = try? Data(contentsOf: url!) {
+//                return UIImage(data: data)
+//            }
+//        }
+//        return nil
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let profileVC = ProfileVC()
         profileVC.userLoginId = users[indexPath.row].id
-        profileVC.drawInterface()
+        //profileVC.drawInterface()
         profileVC.modalPresentationStyle = .fullScreen
         self.present(profileVC, animated: true, completion: nil)
     }

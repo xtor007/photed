@@ -35,6 +35,16 @@ class ProfileVC: UIViewController {
         return label
     }()
     
+    lazy var noPostsLabel: UILabel = {
+        let label = standartLable()
+        label.font = UIFont(name: "HelveticaNeue", size: 30)
+        label.textColor = .gray
+        label.text = "This user hasn'n any picktures"
+        label.frame = CGRect(x: EnvData.paddingLeft, y: view.frame.height/2, width: view.frame.width - EnvData.paddingLeft*2, height: EnvData.labelHeight)
+        label.isHidden = true
+        return label
+    }()
+    
     lazy var backButton: UIButton = {
         let button = standartBackButton()
         button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp/2, width: EnvData.backButtonWidth, height: EnvData.backButtonHeight)
@@ -89,11 +99,15 @@ class ProfileVC: UIViewController {
     func drawInterface() {
         view.addSubview(userLoginLabel)
         view.addSubview(userAvatarImage)
-        editPhoto()
+        //тяжко
+        async {
+            try await editPhoto()
+        }
         view.addSubview(statistikPostData)
         view.addSubview(statistikSeesData)
         view.addSubview(statistikLikesData)
         loadData()
+        view.addSubview(noPostsLabel)
         postsCollectionView = UICollectionView(frame: CGRect(x: 0, y: userAvatarImage.frame.maxY+EnvData.blockDistance, width: view.frame.width, height: view.frame.height-userAvatarImage.frame.maxY-EnvData.blockDistance), collectionViewLayout: UICollectionViewFlowLayout.init())
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         layout.scrollDirection = UICollectionView.ScrollDirection.vertical
@@ -105,9 +119,16 @@ class ProfileVC: UIViewController {
         postsCollectionView.delegate = self
         view.addSubview(postsCollectionView)
         view.addSubview(backButton)
+        if posts.isEmpty {
+            postsCollectionView.isHidden = true
+            noPostsLabel.isHidden = false
+        } else {
+            postsCollectionView.isHidden = false
+            noPostsLabel.isHidden = true
+        }
     }
     
-    func editPhoto() {
+    func editPhoto() async throws {
         async {
             if let userLoginIdOp = userLoginId {
                 if let image = try await getImage(link: db.getAvatarLinkById(id: userLoginIdOp)) {
@@ -117,15 +138,15 @@ class ProfileVC: UIViewController {
         }
     }
     
-    private func getImage(link: String?) async throws -> UIImage? {
-        if link != nil {
-            let url = URL(string: link!)
-            if let data = try? Data(contentsOf: url!) {
-                return UIImage(data: data)
-            }
-        }
-        return nil
-    }
+//    private func getImage(link: String?) async throws -> UIImage? {
+//        if link != nil {
+//            let url = URL(string: link!)
+//            if let data = try? Data(contentsOf: url!) {
+//                return UIImage(data: data)
+//            }
+//        }
+//        return nil
+//    }
     
     func loadData() {
         if posts.isEmpty {

@@ -24,6 +24,7 @@ class MyProfileVC: ProfileVC {
         drawInterface()
         deleteBack()
         view.addSubview(settingButton)
+        noPostsLabel.text = "You haven't any picktures"
     }
     
     private func deleteBack() {
