@@ -16,7 +16,7 @@ class UserCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        avatarImage.layer.cornerRadius = 20
+        avatarImage.layer.cornerRadius = avatarImage.frame.width/2
         // Initialization code
     }
 

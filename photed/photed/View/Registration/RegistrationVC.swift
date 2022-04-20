@@ -31,6 +31,7 @@ class RegistrationVC: UIViewController {
         let avatar = standartAvatar()
         //avatar.backgroundColor = UIColor(named: "buttColor")
         avatar.frame = CGRect(x: (view.frame.width-EnvData.bigAvatarHeight)/2, y: EnvData.paddingUp+EnvData.labelHeight+EnvData.blockDistance, width: EnvData.bigAvatarHeight, height: EnvData.bigAvatarHeight)
+        avatar.layer.cornerRadius = avatar.frame.width/2
         return avatar
     }()
     

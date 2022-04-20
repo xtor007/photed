@@ -56,10 +56,17 @@ extension UIViewController {
     
     func standartAvatar() -> UIImageView {
         let avatar = UIImageView()
-        avatar.layer.cornerRadius = 100
+        //avatar.layer.cornerRadius = 100
         avatar.clipsToBounds = true
         avatar.image = UIImage(named: "none")
         return avatar
+    }
+    
+    func standartBackButton() -> UIButton {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .white
+        return button
     }
     
 }

@@ -10,6 +10,16 @@ import UIDrawer
 
 class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
     
+    var colorStatusBar: Bool = true {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     lazy var loginLabel: UILabel = {
         let label = standartLable()
         label.text = "LOGIN"
@@ -70,6 +80,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         drawInterface()
     }
     
+    
     private func drawInterface() {
         view.addSubview(loginLabel)
         view.addSubview(loginText)
@@ -77,6 +88,10 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         view.addSubview(loginButton)
         view.addSubview(regButton)
         view.addSubview(foggotPasswordButton)
+        EnvData.loginButtonY = loginButton.frame.origin.y
+        //loginButton.bindToKeyboard()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tapToSpace(sender:)))
+        view.addGestureRecognizer(tap)
     }
     
     private func clearTextFields() {
@@ -84,6 +99,11 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         passwordText.breakBorder()
     }
     
+    @objc private func tapToSpace(sender: Any) {
+        print("ABOBA")
+        loginText.endEditing(true)
+        passwordText.endEditing(true)
+    }
 
     @objc private func loginAction(sender: UIButton) {
         clearTextFields()
@@ -103,10 +123,11 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
             showError(message: "Error in password")
             passwordText.paintErrorBorder()
         case .none:
+            db.loginId = db.getIDLogin(login: loginText.text!)
             let tabBar = UITabBarController()
             let icons = ["house.fill", "magnifyingglass", "plus.square", "heart.fill", "person"]
             let titles = ["Home", "Search", "Add", "Notifications", "Profile"]
-            let viewControllers = [PostsVC(), SearchVC(), AddingVC(), NotificationVC(), ProfileVC()]
+            let viewControllers = [PostsVC(), SearchVC(), AddingVC(), NotificationVC(), MyProfileVC()]
             _ = viewControllers.map{$0.title = titles[viewControllers.firstIndex(of: $0)!]}
 //            let navigationVC = viewControllers.map{UINavigationController(rootViewController: $0)}
 //            _ = navigationVC.map{$0.navigationBar.backgroundColor = .white}

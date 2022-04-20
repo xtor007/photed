@@ -10,6 +10,16 @@ import UIKit
 
 class SearchVC: UIViewController {
     
+    var colorStatusBar: Bool = true {
+        didSet {
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     var usersTable: UITableView!
     let cellId = "usersCells"
     
@@ -37,7 +47,8 @@ class SearchVC: UIViewController {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search"
         searchController.searchBar.backgroundColor = .black
-        searchController.searchBar.frame = CGRect(x: 0, y: EnvData.paddingUp/4, width: view.frame.width, height: EnvData.searchHeight)
+        searchController.searchBar.searchTextField.backgroundColor = .white
+        searchController.searchBar.frame = CGRect(x: 0, y: EnvData.paddingUp/3, width: view.frame.width, height: EnvData.searchHeight)
         view.addSubview(searchController.searchBar)
         navigationItem.searchController = searchController
         definesPresentationContext = true
@@ -65,14 +76,22 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func getImage(link: String?) async throws -> UIImage? {
-        if link != nil {
-            let url = URL(string: link!)
-            if let data = try? Data(contentsOf: url!) {
-                return UIImage(data: data)
-            }
-        }
-        return nil
+//    func getImage(link: String?) async throws -> UIImage? {
+//        if link != nil {
+//            let url = URL(string: link!)
+//            if let data = try? Data(contentsOf: url!) {
+//                return UIImage(data: data)
+//            }
+//        }
+//        return nil
+//    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let profileVC = ProfileVC()
+        profileVC.userLoginId = users[indexPath.row].id
+        //profileVC.drawInterface()
+        profileVC.modalPresentationStyle = .fullScreen
+        self.present(profileVC, animated: true, completion: nil)
     }
     
 }
