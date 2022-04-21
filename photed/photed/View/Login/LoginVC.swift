@@ -91,7 +91,13 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
         EnvData.loginButtonY = loginButton.frame.origin.y
         //loginButton.bindToKeyboard()
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapToSpace(sender:)))
-        view.addGestureRecognizer(tap)
+        //view.addGestureRecognizer(tap)
+        
+        
+        
+        let dropDownList = DropDownListView(frame: CGRect(x: 50, y: 200, width: 300, height: 300))
+        dropDownList.initList(forList: [.animales,.computers,.history,.landspace,.meme,.movies,.portrait,.space,.sport,.others], isNeedEmptyItem: true)
+        view.addSubview(dropDownList)
     }
     
     private func clearTextFields() {
