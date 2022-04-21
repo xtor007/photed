@@ -23,6 +23,14 @@ class DropDownListView: UIView {
         return button
     }()
     
+    lazy var isOpenImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "chevron.down")
+        image.tintColor = .white
+        image.frame = CGRect(x: frame.width-EnvData.paddingLeft-mainButton.frame.height/2, y: mainButton.frame.height*3/8, width: mainButton.frame.height/2, height: mainButton.frame.height/4)
+        return image
+    }()
+    
     var listTable = UITableView()
     
     func initList(forList list: [Topic], isNeedEmptyItem: Bool) {
@@ -37,6 +45,12 @@ class DropDownListView: UIView {
     
     func closeMenu() {
         listTable.isHidden = true
+        isOpenImage.image = UIImage(systemName: "chevron.down")
+    }
+    
+    func openMenu() {
+        listTable.isHidden = false
+        isOpenImage.image = UIImage(systemName: "chevron.up")
     }
     
     private func drawInterface() {
@@ -49,6 +63,7 @@ class DropDownListView: UIView {
         listTable.dataSource = self
         listTable.isHidden = true
         addSubview(listTable)
+        addSubview(isOpenImage)
     }
     
     private func getTextFromItem(item: Topic?) -> String {
@@ -61,6 +76,11 @@ class DropDownListView: UIView {
     
     @objc private func buttonIsTapped(sender: UIButton) {
         listTable.isHidden.toggle()
+        if listTable.isHidden {
+            closeMenu()
+        } else {
+            openMenu()
+        }
     }
 
 }
@@ -84,7 +104,7 @@ extension DropDownListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectItem = items[indexPath.row]
         mainButton.setTitle(getTextFromItem(item: selectItem), for: .normal)
-        listTable.isHidden = true
+        closeMenu()
     }
 
 }
