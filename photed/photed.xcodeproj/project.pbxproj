@@ -20,6 +20,10 @@
 		FF2FD37E2809F0F300CD5E2D /* KeyboardSubscribe.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD37D2809F0F300CD5E2D /* KeyboardSubscribe.swift */; };
 		FF2FD3BE280D8F4500CD5E2D /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3BD280D8F4400CD5E2D /* SettingsVC.swift */; };
 		FF2FD3C0281002B600CD5E2D /* GetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3BF281002B600CD5E2D /* GetImage.swift */; };
+		FF2FD3C32811549C00CD5E2D /* DropDownListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3C22811549C00CD5E2D /* DropDownListView.swift */; };
+		FF2FD3C528115F3700CD5E2D /* TopicEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3C428115F3700CD5E2D /* TopicEnum.swift */; };
+		FF2FD3C92811663F00CD5E2D /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3C72811663F00CD5E2D /* ListCell.swift */; };
+		FF2FD3CA2811663F00CD5E2D /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2FD3C82811663F00CD5E2D /* ListCell.xib */; };
 		FF928B6127EA2BD300311767 /* ReductionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6027EA2BD300311767 /* ReductionInt.swift */; };
 		FF928B6327EA69CB00311767 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6227EA69CB00311767 /* MyProfileVC.swift */; };
 		FF928B6527EB2CA000311767 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6427EB2CA000311767 /* Post.swift */; };
@@ -62,6 +66,10 @@
 		FF2FD37D2809F0F300CD5E2D /* KeyboardSubscribe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardSubscribe.swift; sourceTree = "<group>"; };
 		FF2FD3BD280D8F4400CD5E2D /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		FF2FD3BF281002B600CD5E2D /* GetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetImage.swift; sourceTree = "<group>"; };
+		FF2FD3C22811549C00CD5E2D /* DropDownListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownListView.swift; sourceTree = "<group>"; };
+		FF2FD3C428115F3700CD5E2D /* TopicEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicEnum.swift; sourceTree = "<group>"; };
+		FF2FD3C72811663F00CD5E2D /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		FF2FD3C82811663F00CD5E2D /* ListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
 		FF928B6027EA2BD300311767 /* ReductionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionInt.swift; sourceTree = "<group>"; };
 		FF928B6227EA69CB00311767 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		FF928B6427EB2CA000311767 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -179,6 +187,25 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		FF2FD3C12811544800CD5E2D /* DropDownList */ = {
+			isa = PBXGroup;
+			children = (
+				FF2FD3C62811661D00CD5E2D /* Cell */,
+				FF2FD3C22811549C00CD5E2D /* DropDownListView.swift */,
+				FF2FD3C428115F3700CD5E2D /* TopicEnum.swift */,
+			);
+			path = DropDownList;
+			sourceTree = "<group>";
+		};
+		FF2FD3C62811661D00CD5E2D /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FF2FD3C72811663F00CD5E2D /* ListCell.swift */,
+				FF2FD3C82811663F00CD5E2D /* ListCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		FF928B6627EB4FA900311767 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +249,7 @@
 		FFAFA37227D2405400DB8808 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FF2FD3C12811544800CD5E2D /* DropDownList */,
 				FF2FD3BC280D8F2400CD5E2D /* Settings */,
 				C41DF62227D50858005509A5 /* NotificationController */,
 				C41DF5FB27D4DCEA005509A5 /* AddingController */,
@@ -386,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFC9B1EF27D63969000FF31B /* UserCell.xib in Resources */,
+				FF2FD3CA2811663F00CD5E2D /* ListCell.xib in Resources */,
 				FFAFA36B27D2403800DB8808 /* LaunchScreen.storyboard in Resources */,
 				FFAFA36827D2403800DB8808 /* Assets.xcassets in Resources */,
 				FF928B6A27EB4FDF00311767 /* PostInProfileCell.xib in Resources */,
@@ -453,8 +482,10 @@
 				FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */,
 				FFC9B1EE27D63969000FF31B /* UserCell.swift in Sources */,
 				C48912F927D390C100AA8108 /* RegistrationCheck.swift in Sources */,
+				FF2FD3C92811663F00CD5E2D /* ListCell.swift in Sources */,
 				FF928B6327EA69CB00311767 /* MyProfileVC.swift in Sources */,
 				FFC9B1C827D4DEBC000FF31B /* StandartView.swift in Sources */,
+				FF2FD3C528115F3700CD5E2D /* TopicEnum.swift in Sources */,
 				FFAFA36127D2402E00DB8808 /* SceneDelegate.swift in Sources */,
 				FFAFA38827D28DC400DB8808 /* FoggotPasswordVC.swift in Sources */,
 				FFAFA37927D2462E00DB8808 /* LoginVC.swift in Sources */,
@@ -464,6 +495,7 @@
 				C41DF5FF27D4DFFE005509A5 /* SearchVC.swift in Sources */,
 				C48912F727D286D700AA8108 /* Validation.swift in Sources */,
 				C41DF60127D4E00B005509A5 /* AddingVC.swift in Sources */,
+				FF2FD3C32811549C00CD5E2D /* DropDownListView.swift in Sources */,
 				FF928B6127EA2BD300311767 /* ReductionInt.swift in Sources */,
 				C41DF5FD27D4DFE3005509A5 /* ProfileVC.swift in Sources */,
 				C489130227D41B4300AA8108 /* PostsVC.swift in Sources */,
