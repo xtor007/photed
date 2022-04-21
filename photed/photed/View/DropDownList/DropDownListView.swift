@@ -11,6 +11,7 @@ class DropDownListView: UIView {
 
     private var items: [Topic?] = []
     private(set) var selectItem: Topic?
+    private var isClosed = true
     
     private let cellId = "listCell"
     
@@ -43,13 +44,22 @@ class DropDownListView: UIView {
         drawInterface()
     }
     
-    func closeMenu() {
-        listTable.isHidden = true
+    func closeMenu(time: TimeInterval = 0.2) {
+        //listTable.isHidden = true
+        isClosed = true
+        UIView.animate(withDuration: time, delay: time, options: .curveEaseOut) {
+            self.listTable.frame = CGRect(x: self.listTable.frame.minX, y: self.listTable.frame.minY, width: self.listTable.frame.width, height: 0)
+        }
+        listTable.frame = CGRect(x: listTable.frame.minX, y: listTable.frame.minY, width: listTable.frame.width, height: 0)
         isOpenImage.image = UIImage(systemName: "chevron.down")
     }
     
     func openMenu() {
-        listTable.isHidden = false
+        //listTable.isHidden = false
+        isClosed = false
+        UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseIn) {
+            self.listTable.frame = CGRect(x: self.listTable.frame.minX, y: self.listTable.frame.minY, width: self.listTable.frame.width, height: self.frame.height*4/5)
+        }
         isOpenImage.image = UIImage(systemName: "chevron.up")
     }
     
@@ -61,7 +71,7 @@ class DropDownListView: UIView {
         listTable.register(UINib(nibName: "ListCell", bundle: nil), forCellReuseIdentifier: cellId)
         listTable.delegate = self
         listTable.dataSource = self
-        listTable.isHidden = true
+        closeMenu(time: 0)
         addSubview(listTable)
         addSubview(isOpenImage)
     }
@@ -75,8 +85,8 @@ class DropDownListView: UIView {
     }
     
     @objc private func buttonIsTapped(sender: UIButton) {
-        listTable.isHidden.toggle()
-        if listTable.isHidden {
+        //listTable.isHidden.toggle()
+        if !isClosed {
             closeMenu()
         } else {
             openMenu()
@@ -86,7 +96,7 @@ class DropDownListView: UIView {
 }
 
 extension DropDownListView: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
@@ -104,7 +114,7 @@ extension DropDownListView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectItem = items[indexPath.row]
         mainButton.setTitle(getTextFromItem(item: selectItem), for: .normal)
-        closeMenu()
+        closeMenu(time: 0.1)
     }
 
 }
