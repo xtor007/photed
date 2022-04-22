@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import UIDrawer
 
 class MyProfileVC: ProfileVC {
     
@@ -35,8 +36,17 @@ class MyProfileVC: ProfileVC {
     @objc private func goToSettings(sender: UIButton) {
         let settingsVC = SettingsVC()
         settingsVC.userLoginId = userLoginId!
-        settingsVC.modalPresentationStyle = .fullScreen
+        settingsVC.modalPresentationStyle = .custom
+        settingsVC.transitioningDelegate = self
         present(settingsVC, animated: true)
     }
     
+}
+
+extension MyProfileVC:  UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        let presentationController = DrawerPresentationController(presentedViewController: presented, presenting: presenting, blurEffectStyle: .dark)
+        presentationController.topGap = CGFloat(SettingsScreensParametrs.screens.count)*EnvData.tableViewCellHeight
+        return presentationController
+    }
 }

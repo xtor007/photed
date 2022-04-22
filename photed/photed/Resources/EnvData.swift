@@ -24,6 +24,7 @@ class EnvData {
     static let bigAvatarHeight: CGFloat = 200
     static let backButtonWidth: CGFloat = 24
     static let backButtonHeight: CGFloat = 40
+    static let tableViewCellHeight: CGFloat = 50
     
     static var loginButtonY: CGFloat = 0
     static var isNeedToChangeBackLogin = true
