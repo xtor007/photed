@@ -33,8 +33,8 @@ class MyProfileVC: ProfileVC {
     }
     
     @objc private func goToSettings(sender: UIButton) {
-        print("settings")
         let settingsVC = SettingsVC()
+        settingsVC.userLoginId = userLoginId!
         settingsVC.modalPresentationStyle = .fullScreen
         present(settingsVC, animated: true)
     }

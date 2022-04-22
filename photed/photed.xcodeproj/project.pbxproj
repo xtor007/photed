@@ -24,6 +24,12 @@
 		FF2FD3C528115F3700CD5E2D /* TopicEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3C428115F3700CD5E2D /* TopicEnum.swift */; };
 		FF2FD3C92811663F00CD5E2D /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3C72811663F00CD5E2D /* ListCell.swift */; };
 		FF2FD3CA2811663F00CD5E2D /* ListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF2FD3C82811663F00CD5E2D /* ListCell.xib */; };
+		FF2FD3CD2812859100CD5E2D /* SubsettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3CC2812859100CD5E2D /* SubsettingsVC.swift */; };
+		FF2FD3CF2812861400CD5E2D /* SettingsScreensParamerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3CE2812861400CD5E2D /* SettingsScreensParamerts.swift */; };
+		FF2FD3D12812885000CD5E2D /* AccountSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3D02812885000CD5E2D /* AccountSettingsVC.swift */; };
+		FF2FD3D32812889500CD5E2D /* MainSettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3D22812889500CD5E2D /* MainSettingsVC.swift */; };
+		FF2FD3D52812892600CD5E2D /* InformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3D42812892600CD5E2D /* InformationVC.swift */; };
+		FF2FD3D7281289CB00CD5E2D /* SavedPostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2FD3D6281289CB00CD5E2D /* SavedPostsVC.swift */; };
 		FF928B6127EA2BD300311767 /* ReductionInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6027EA2BD300311767 /* ReductionInt.swift */; };
 		FF928B6327EA69CB00311767 /* MyProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6227EA69CB00311767 /* MyProfileVC.swift */; };
 		FF928B6527EB2CA000311767 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF928B6427EB2CA000311767 /* Post.swift */; };
@@ -70,6 +76,12 @@
 		FF2FD3C428115F3700CD5E2D /* TopicEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicEnum.swift; sourceTree = "<group>"; };
 		FF2FD3C72811663F00CD5E2D /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		FF2FD3C82811663F00CD5E2D /* ListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCell.xib; sourceTree = "<group>"; };
+		FF2FD3CC2812859100CD5E2D /* SubsettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsettingsVC.swift; sourceTree = "<group>"; };
+		FF2FD3CE2812861400CD5E2D /* SettingsScreensParamerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreensParamerts.swift; sourceTree = "<group>"; };
+		FF2FD3D02812885000CD5E2D /* AccountSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsVC.swift; sourceTree = "<group>"; };
+		FF2FD3D22812889500CD5E2D /* MainSettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSettingsVC.swift; sourceTree = "<group>"; };
+		FF2FD3D42812892600CD5E2D /* InformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationVC.swift; sourceTree = "<group>"; };
+		FF2FD3D6281289CB00CD5E2D /* SavedPostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostsVC.swift; sourceTree = "<group>"; };
 		FF928B6027EA2BD300311767 /* ReductionInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReductionInt.swift; sourceTree = "<group>"; };
 		FF928B6227EA69CB00311767 /* MyProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileVC.swift; sourceTree = "<group>"; };
 		FF928B6427EB2CA000311767 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -182,7 +194,10 @@
 		FF2FD3BC280D8F2400CD5E2D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				FF2FD3CB281284CD00CD5E2D /* Subsettings */,
 				FF2FD3BD280D8F4400CD5E2D /* SettingsVC.swift */,
+				FF2FD3CC2812859100CD5E2D /* SubsettingsVC.swift */,
+				FF2FD3CE2812861400CD5E2D /* SettingsScreensParamerts.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -204,6 +219,17 @@
 				FF2FD3C82811663F00CD5E2D /* ListCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		FF2FD3CB281284CD00CD5E2D /* Subsettings */ = {
+			isa = PBXGroup;
+			children = (
+				FF2FD3D02812885000CD5E2D /* AccountSettingsVC.swift */,
+				FF2FD3D22812889500CD5E2D /* MainSettingsVC.swift */,
+				FF2FD3D42812892600CD5E2D /* InformationVC.swift */,
+				FF2FD3D6281289CB00CD5E2D /* SavedPostsVC.swift */,
+			);
+			path = Subsettings;
 			sourceTree = "<group>";
 		};
 		FF928B6627EB4FA900311767 /* Cell */ = {
@@ -471,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF2FD3CF2812861400CD5E2D /* SettingsScreensParamerts.swift in Sources */,
 				C48912FF27D3DF9700AA8108 /* TextFieldsClicks.swift in Sources */,
 				FFAFA38027D2704600DB8808 /* LoginCheck.swift in Sources */,
 				FFAFA38A27D3822F00DB8808 /* FoggotPasswordCheck.swift in Sources */,
@@ -478,9 +505,12 @@
 				FFAFA37E27D26F4000DB8808 /* APIObj.swift in Sources */,
 				FF2FD3C0281002B600CD5E2D /* GetImage.swift in Sources */,
 				FFAFA35F27D2402E00DB8808 /* AppDelegate.swift in Sources */,
+				FF2FD3D32812889500CD5E2D /* MainSettingsVC.swift in Sources */,
 				FFC9B1B827D3A6E2000FF31B /* Mailer.swift in Sources */,
+				FF2FD3D52812892600CD5E2D /* InformationVC.swift in Sources */,
 				FFAFA38527D2818C00DB8808 /* PaintBorders.swift in Sources */,
 				FFC9B1EE27D63969000FF31B /* UserCell.swift in Sources */,
+				FF2FD3CD2812859100CD5E2D /* SubsettingsVC.swift in Sources */,
 				C48912F927D390C100AA8108 /* RegistrationCheck.swift in Sources */,
 				FF2FD3C92811663F00CD5E2D /* ListCell.swift in Sources */,
 				FF928B6327EA69CB00311767 /* MyProfileVC.swift in Sources */,
@@ -501,6 +531,8 @@
 				C489130227D41B4300AA8108 /* PostsVC.swift in Sources */,
 				FF2FD37E2809F0F300CD5E2D /* KeyboardSubscribe.swift in Sources */,
 				FFAFA37C27D25B5200DB8808 /* EnvData.swift in Sources */,
+				FF2FD3D7281289CB00CD5E2D /* SavedPostsVC.swift in Sources */,
+				FF2FD3D12812885000CD5E2D /* AccountSettingsVC.swift in Sources */,
 				FF928B6527EB2CA000311767 /* Post.swift in Sources */,
 				FFAFA38227D27E2E00DB8808 /* ShowError.swift in Sources */,
 				FFC9B1EA27D6333F000FF31B /* User.swift in Sources */,

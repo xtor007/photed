@@ -8,6 +8,8 @@
 import UIKit
 
 class SettingsVC: UIViewController {
+    
+    var userLoginId: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
