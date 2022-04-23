@@ -11,7 +11,7 @@ class InformationVC: SubsettingsVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nameSettingsLabel.text = "Information"
         // Do any additional setup after loading the view.
     }
     

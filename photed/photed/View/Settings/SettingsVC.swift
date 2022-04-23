@@ -52,6 +52,7 @@ extension SettingsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let parametrs = SettingsScreensParametrs.screens[indexPath.row]
         let controller = parametrs.controller
+        controller.userLoginId = self.userLoginId
         controller.modalPresentationStyle = .overFullScreen
         present(controller, animated: true)
     }

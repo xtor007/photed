@@ -11,7 +11,7 @@ class MainSettingsVC: SubsettingsVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nameSettingsLabel.text = "Basic"
         // Do any additional setup after loading the view.
     }
     

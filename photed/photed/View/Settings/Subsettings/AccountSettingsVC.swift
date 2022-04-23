@@ -11,7 +11,7 @@ class AccountSettingsVC: SubsettingsVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nameSettingsLabel.text = "Account"
         // Do any additional setup after loading the view.
     }
     
