@@ -66,10 +66,10 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! UserCell
         let user = users[indexPath.row]
         cell.avatarImage.image = UIImage(named: "none")
-        async {
-            if let image = try await getImage(link: user.avatarLink) {
-                cell.avatarImage.image = image
-            }
+        getImage(withLink: user.avatarLink) { image in
+            cell.avatarImage.image = image
+        } onError: { message in
+            print("message")
         }
         cell.loginLabel.text = user.login
         cell.statistikLabel.text = "\(db.getCountOfLike(loginId: user.id).reductionInt()!)|\(db.getCountOfSee(loginId: user.id).reductionInt()!)"

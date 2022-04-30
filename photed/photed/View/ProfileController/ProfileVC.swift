@@ -129,11 +129,11 @@ class ProfileVC: UIViewController {
     }
     
     func editPhoto() async throws {
-        async {
-            if let userLoginIdOp = userLoginId {
-                if let image = try await getImage(link: db.getAvatarLinkById(id: userLoginIdOp)) {
-                    userAvatarImage.image = image
-                }
+        if let userLoginIdOp = userLoginId {
+            getImage(withLink: db.getAvatarLinkById(id: userLoginIdOp)) { image in
+                self.userAvatarImage.image = image
+            } onError: { message in
+                print(message)
             }
         }
     }
@@ -184,10 +184,10 @@ extension ProfileVC: UICollectionViewDelegate,UICollectionViewDataSource,UIColle
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! PostInProfileCell
         cell.image.image = UIImage(named: "none")
         let post = posts[indexPath.row]
-        async {
-            if let image = try await getImage(link: post.photoLink) {
-                cell.image.image = image
-            }
+        getImage(withLink: post.photoLink) { image in
+            cell.image.image = image
+        } onError: { message in
+            print(message)
         }
         return cell
     }
