@@ -66,6 +66,7 @@ extension UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .white
+        //CONFIGURATION
         return button
     }
     
