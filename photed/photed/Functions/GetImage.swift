@@ -9,14 +9,25 @@ import UIKit
 
 extension UIViewController {
     
-    func getImage(link: String?) async throws -> UIImage? {
-        if link != nil {
-            let url = URL(string: link!)
-            if let data = try? Data(contentsOf: url!) {
-                return UIImage(data: data)
+    func getImage(withLink link: String?, onSucces: @escaping (UIImage) -> (), onError: @escaping (String) -> ()) {
+        if let link = link {
+            DispatchQueue.main.async {
+                let url = URL(string: link)
+                do {
+                    let data = try Data(contentsOf: url!)
+                    if let result = UIImage(data: data) {
+                        onSucces(result)
+                    } else {
+                        onError("Data is not an image")
+                    }
+                } catch {
+                    onError(error.localizedDescription)
+                }
             }
+            
+        } else {
+            onError("Link isn't valid")
         }
-        return nil
     }
     
 }

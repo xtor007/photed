@@ -12,7 +12,7 @@ class EnvData {
     
     static let presentModePaddingDown: CGFloat = 40
     static let paddingLeft: CGFloat = 10
-    static let paddingUp: CGFloat = 40
+    static let paddingUp: CGFloat = 80
     static let searchHeight: CGFloat = 60
     static let labelHeight: CGFloat = 40
     static let blockDistance: CGFloat = 20
@@ -24,6 +24,7 @@ class EnvData {
     static let bigAvatarHeight: CGFloat = 200
     static let backButtonWidth: CGFloat = 24
     static let backButtonHeight: CGFloat = 40
+    static let tableViewCellHeight: CGFloat = 50
     
     static var loginButtonY: CGFloat = 0
     static var isNeedToChangeBackLogin = true
