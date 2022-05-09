@@ -11,7 +11,7 @@ import UIDrawer
 class MyProfileVC: ProfileVC {
     
     lazy var settingButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(configuration: .plain())
         button.setImage(UIImage(systemName: "gear"), for: .normal)
         button.tintColor = .white
         button.frame = CGRect(x: view.frame.width-EnvData.paddingLeft-EnvData.backButtonWidth, y: EnvData.paddingUp/2, width: EnvData.backButtonWidth, height: EnvData.backButtonHeight)

@@ -13,13 +13,13 @@ class SubsettingsVC: UIViewController {
     
     lazy var nameSettingsLabel: UILabel = {
         let label = standartLable()
-        label.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.labelHeight)
+        label.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp/2, width: view.frame.width-EnvData.paddingLeft*2, height: EnvData.labelHeight)
         return label
     }()
     
     lazy var backButton: UIButton = {
         let button = standartBackButton()
-        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp, width: EnvData.backButtonWidth, height: EnvData.backButtonHeight)
+        button.frame = CGRect(x: EnvData.paddingLeft, y: EnvData.paddingUp/2, width: EnvData.backButtonWidth, height: EnvData.backButtonHeight)
         button.addTarget(self, action: #selector(backAction(sender:)), for: .touchUpInside)
         return button
     }()

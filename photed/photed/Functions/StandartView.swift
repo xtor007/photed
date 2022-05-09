@@ -63,10 +63,12 @@ extension UIViewController {
     }
     
     func standartBackButton() -> UIButton {
-        let button = UIButton()
+        let button = UIButton(configuration: .plain())
+        //button.backgroundColor = .clear
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .white
         //CONFIGURATION
+        //button.largeContentImageInsets = UIEdgeInsets(top: 2, left: 2, bottom: 2, right: 2)
         return button
     }
     
