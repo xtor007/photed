@@ -152,7 +152,7 @@ class RegistrationVC: UIViewController {
             phoneText.paintErrorBorder()
         default:
             let image = isAvatarSet ? avatarImage.image : nil
-            db.postNewUser(avatar: image, login: loginText.text!, password: passwordText.text!, email: emailText.text, phone: phoneText.text)
+            APIObj.db.postNewUser(avatar: image, login: loginText.text!, password: passwordText.text!, email: emailText.text, phone: phoneText.text)
             dismiss(animated: true, completion: nil)
         }
     }

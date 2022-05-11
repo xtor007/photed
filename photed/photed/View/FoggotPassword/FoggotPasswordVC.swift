@@ -164,7 +164,7 @@ class FoggotPasswordVC: UIViewController {
             showError(message: "Passwords do not match")
             passwordTextAgain.paintErrorBorder()
         case .none:
-            db.postNewPassword(id: db.getIDLogin(login: loginText.text!), password: passwordText.text!)
+            APIObj.db.postNewPassword(id: APIObj.db.getIDLogin(login: loginText.text!), password: passwordText.text!)
             dismiss(animated: true)
         }
     }

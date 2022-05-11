@@ -18,7 +18,7 @@ import UIKit
 
 class APIObj {
     
-    //var users: [UserInfo] = [] этот класс не для этого
+    static var db = APIObj()
     
     var loginId: String!
     
@@ -95,7 +95,13 @@ class APIObj {
         return [Post(id: "a", photoLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80")]
     }
     
+    func getEvants() -> [Event] {
+        //use loginId
+        //на сервер как логин пользователя послать loginId
+        return [
+            Event(login: "hfhf", type: "likes", postLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80"),
+            Event(login: "hfhf", type: "dislikes", postLink: "https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80")
+        ]
+    }
+    
 }
-
-// temp DB
-let db = APIObj()

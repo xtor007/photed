@@ -21,7 +21,7 @@ class MyProfileVC: ProfileVC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        userLoginId = db.loginId
+        userLoginId = APIObj.db.loginId
         drawInterface()
         deleteBack()
         view.addSubview(settingButton)

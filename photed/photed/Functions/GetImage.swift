@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIViewController {
+extension UIResponder {
     
     func getImage(withLink link: String?, onSucces: @escaping (UIImage) -> (), onError: @escaping (String) -> ()) {
         if let link = link {

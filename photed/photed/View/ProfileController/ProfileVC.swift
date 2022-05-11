@@ -29,7 +29,7 @@ class ProfileVC: UIViewController {
         let label = standartLable()
         label.textAlignment = .left
         if let userLoginIdOp: String = userLoginId {
-            label.text = db.getLoginById(id: userLoginIdOp)
+            label.text = APIObj.db.getLoginById(id: userLoginIdOp)
         }
         label.frame = CGRect(x: EnvData.paddingLeft + EnvData.backButtonWidth, y: EnvData.paddingUp/2, width: view.frame.width/2, height: EnvData.labelHeight)
         return label
@@ -128,9 +128,9 @@ class ProfileVC: UIViewController {
         }
     }
     
-    func editPhoto() async throws {
+    func editPhoto() {
         if let userLoginIdOp = userLoginId {
-            getImage(withLink: db.getAvatarLinkById(id: userLoginIdOp)) { image in
+            getImage(withLink: APIObj.db.getAvatarLinkById(id: userLoginIdOp)) { image in
                 self.userAvatarImage.image = image
             } onError: { message in
                 print(message)
@@ -152,16 +152,16 @@ class ProfileVC: UIViewController {
         if posts.isEmpty {
             if let login = userLoginId {
                 if let userLoginIdOp: String = userLoginId {
-                    userLoginLabel.text = db.getLoginById(id: userLoginIdOp)
+                    userLoginLabel.text = APIObj.db.getLoginById(id: userLoginIdOp)
                 }
-                posts = db.getAllPosts(loginId: login)
+                posts = APIObj.db.getAllPosts(loginId: login)
                 if let count = posts.count.reductionInt() {
                     statistikPostData.text! += count
                 }
-                if let count = db.getCountOfSee(loginId: login).reductionInt() {
+                if let count = APIObj.db.getCountOfSee(loginId: login).reductionInt() {
                     statistikSeesData.text! += count
                 }
-                if let count = db.getCountOfLike(loginId: login).reductionInt() {
+                if let count = APIObj.db.getCountOfLike(loginId: login).reductionInt() {
                     statistikLikesData.text! += count
                 }
             }
