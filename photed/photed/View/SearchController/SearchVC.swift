@@ -31,7 +31,7 @@ class SearchVC: UIViewController {
         super.viewDidLoad()
         overrideUserInterfaceStyle = .light
         view.backgroundColor = .black
-        users = db.getAllUsers()
+        users = APIObj.db.getAllUsers()
         drawInterface()
     }
     
@@ -72,7 +72,7 @@ extension SearchVC: UITableViewDataSource, UITableViewDelegate {
             print("message")
         }
         cell.loginLabel.text = user.login
-        cell.statistikLabel.text = "\(db.getCountOfLike(loginId: user.id).reductionInt()!)|\(db.getCountOfSee(loginId: user.id).reductionInt()!)"
+        cell.statistikLabel.text = "\(APIObj.db.getCountOfLike(loginId: user.id).reductionInt()!)|\(APIObj.db.getCountOfSee(loginId: user.id).reductionInt()!)"
         return cell
     }
     
@@ -100,9 +100,9 @@ extension SearchVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.searchBar.text != nil && searchController.searchBar.text != "" {
-            users = db.getAllUsers(searchQuery: searchController.searchBar.text)
+            users = APIObj.db.getAllUsers(searchQuery: searchController.searchBar.text)
         } else {
-            users = db.getAllUsers()
+            users = APIObj.db.getAllUsers()
         }
         usersTable.reloadData()
     }

@@ -34,7 +34,7 @@ class SavedPostsVC: SubsettingsVC {
     func drawInterface() {
         view.addSubview(noPostsLabel)
         if let login = userLoginId {
-            posts = db.getSavedPosts(loginId: login)
+            posts = APIObj.db.getSavedPosts(loginId: login)
         }
         postsCollectionView = UICollectionView(frame: CGRect(x: 0, y: nameSettingsLabel.frame.maxY+EnvData.blockDistance, width: view.frame.width, height: view.frame.height-nameSettingsLabel.frame.maxY-EnvData.blockDistance), collectionViewLayout: UICollectionViewFlowLayout.init())
         let layout:UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()

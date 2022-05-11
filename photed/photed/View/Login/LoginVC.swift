@@ -123,7 +123,7 @@ class LoginVC: UIViewController, UIViewControllerTransitioningDelegate {
             showError(message: "Error in password")
             passwordText.paintErrorBorder()
         case .none:
-            db.loginId = db.getIDLogin(login: loginText.text!)
+            APIObj.db.loginId = APIObj.db.getIDLogin(login: loginText.text!)
             let tabBar = UITabBarController()
             let icons = ["house.fill", "magnifyingglass", "plus.square", "heart.fill", "person"]
             let titles = ["Home", "Search", "Add", "Notifications", "Profile"]
